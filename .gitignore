@@ -32,3 +32,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# ESLint のキャッシュファイルを追加
+.eslintcache
