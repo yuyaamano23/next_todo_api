@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "lint-staged": "lint-staged",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
