@@ -30,6 +30,8 @@ const TodoInput: React.FC = () => {
     })
       .then(() => {
         console.log('TodoInput Post success')
+        setTitle('')
+        setContent('')
         // ページ更新させる
         Router.push('/todos')
       })
