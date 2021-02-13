@@ -12,6 +12,7 @@ const ServerSideIndex: React.FC<ServerSideIndexProps> = ({
 }: ServerSideIndexProps) => {
   return (
     <>
+      <h1>Hello, ToDoList👋</h1>
       <TodoList todos={todos} />
     </>
   )
