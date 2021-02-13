@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import Router from 'next/router'
 
 const data = {
   title: 'postもしかして行けたんご？？？',
@@ -18,6 +19,8 @@ const TodoInput: React.FC = () => {
     })
       .then(() => {
         console.log('success')
+        // ページ更新させる
+        Router.push('/todos')
       })
       .catch((err) => {
         console.log(err)
