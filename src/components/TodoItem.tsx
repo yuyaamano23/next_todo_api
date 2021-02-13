@@ -1,16 +1,16 @@
 import React from 'react'
-import { TodoItem } from 'components/Types'
+import { Todo } from 'components/Types'
 
 type Props = {
-  todos: TodoItem
+  todo: Todo
 }
 
-const TodoItem: React.FC<Props> = ({ todos }) => {
+const TodoItem: React.FC<Props> = ({ todo }) => {
   return (
     <>
-      <div>{todos.id}</div>
-      <div>{todos.title}</div>
-      <div>{todos.content}</div>
+      <div>{todo.id}</div>
+      <div>{todo.title}</div>
+      <div>{todo.content}</div>
       <button>削除</button>
     </>
   )
