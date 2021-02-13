@@ -23,5 +23,6 @@ export default ServerSideIndex
 export const getServerSideProps: GetServerSideProps = async () => {
   const response = await fetch('http://localhost:8000/api/todos')
   const todos = await response.json()
+  //   pageディレクトリ配下のコンポーネントでは↓このようにreturn{ props: hoge }とするとhogeで参照できる
   return { props: { todos } }
 }
