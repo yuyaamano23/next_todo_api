@@ -2,6 +2,7 @@ import React from 'react'
 import { Todo } from 'components/Types'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Link from 'next/link'
+import TodoEdit from 'components/TodoEdit'
 
 type TodoItemProps = {
   todo: Todo
@@ -17,6 +18,7 @@ const TodoItemDetail: React.FC<TodoItemProps> = ({ todo }) => {
       <Link href="/todos">
         <button>戻る</button>
       </Link>
+      <TodoEdit todo={todo} />
     </>
   )
 }
