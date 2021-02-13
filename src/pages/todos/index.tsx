@@ -1,4 +1,5 @@
 import React from 'react'
+import TodoInput from 'components/TodoInput'
 import TodoList from 'components/TodoList'
 import { GetServerSideProps } from 'next'
 import { Todo } from 'components/Types'
@@ -13,6 +14,7 @@ const Index: React.FC<TodosServerSideIndexProps> = ({
   return (
     <>
       <h1>Hello, ToDoList👋</h1>
+      <TodoInput />
       <TodoList todos={todos} />
     </>
   )

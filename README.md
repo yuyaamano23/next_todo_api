@@ -1,6 +1,14 @@
+## やりたいこと
+
+- Redux
+- ユーザ認証
+- いいね機能
+- コメント機能
+- 画像投稿機能
+
 ## 関数コンポーネントの型は次のように書くのがお勧めです
 
-[参考記事](https://teratail.com/questions/253756)
+[React+TypeScript+eslint の Warning を解消したいのですが、無名関数コンポーネントの返り値が分かりません。](https://teratail.com/questions/253756)
 
 ```js
 // React.FC<P> は (props: P) => JSX.Element|その他いろいろ という型です。
@@ -13,6 +21,19 @@ const Btn: React.FC<Props> = ({ x, y, z }) => { ... };
 const Btn: React.FC = () => { ... };
 ```
 
+## コードスニペット
+
+<details>
+<summary>Redirectの方法</summary>
+
+```js
+import Router from 'next/router
+
+Router.push('/todos')
+```
+
+</details>
+
 ## Data Fetchingn
 
 - getServerSideProps
@@ -21,24 +42,28 @@ const Btn: React.FC = () => { ... };
   ができるのは page/配下の奴らのみ
   <br>
 
-todo の初期表示には`getServerSideProps`を用いています。<br>
 [CSR,SSG,SSR,ISR があやふやな人へざっくり解説する](https://zenn.dev/akino/articles/78479998efef55)
 
 ## Dynamic Routing
 
-[Next.js のダイナミックルーティングを実装してみた](https://qiita.com/mt_816/items/d4e685953afa4906dd38)<br>
-[Next.js における SSG（静的サイト生成）と ISR について（自分の）限界まで丁寧に説明する](https://qiita.com/thesugar/items/47ec3d243d00ddd0b4ed)<br>
+- [Next.js のダイナミックルーティングを実装してみた](https://qiita.com/mt_816/items/d4e685953afa4906dd38)<br>
+- [Next.js における SSG（静的サイト生成）と ISR について（自分の）限界まで丁寧に説明する](https://qiita.com/thesugar/items/47ec3d243d00ddd0b4ed)<br>
 
-[fallback:blocking について](https://qiita.com/thesugar/items/47ec3d243d00ddd0b4ed#fallback-blocking)
-Next.js 10（2020/10/27 リリース）にて追加された機能です。<br>
+- [fallback:blocking について](https://qiita.com/thesugar/items/47ec3d243d00ddd0b4ed#fallback-blocking)
+  Next.js 10（2020/10/27 リリース）にて追加された機能です。<br>
 
-`revalidate`について ↓
+<details>
+<summary>revalidateについて</summary>
+
 [rebalidaten について](https://qiita.com/thesugar/items/47ec3d243d00ddd0b4ed#%E3%82%A4%E3%83%B3%E3%82%AF%E3%83%AA%E3%83%A1%E3%83%B3%E3%82%BF%E3%83%AB%E9%9D%99%E7%9A%84%E5%86%8D%E7%94%9F%E6%88%90-incremental-static-regeneration-isr)<br>
 
 「Twitter のプロフィールページ」のように(ユーザーによって頻繁に編集が行われるページ)、編集が完了したにもかかわらず、編集前のデータが表示されてしまうことは厳に回避したい、という要求があるのであれば`revalidate`は適していない、と結論づけられています。
 
-UX において、
+</details>
 
+### sst?ssg?
+
+```txt
 1️⃣ 結果整合性(Eventual Consistency)のみが求められる場合
 →(incremental)静的生成で対応可能
 
@@ -46,3 +71,10 @@ UX において、
 
 1. getServerSideProps を使う or
 2. [SWR](https://swr.vercel.app/) 等でクライエント側で確実に更新する
+```
+
+## VScode 拡張機能
+
+- Todo HighLight
+  デフォルトだと`TODO:`,`FIXME:`をハイライト表示する。
+  `command`+`shift`+`P`からの`>list`を選択すればコンソールにリストアップしてくれる。
