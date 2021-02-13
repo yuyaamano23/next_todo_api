@@ -1,14 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import Router from 'next/router'
 
-const data = {
-  title: 'postもしかして行けたんご？？？',
-  content: 'post行けたかもまじでクソ嬉しい！',
+type InputData = {
+  title: string
+  content: string
 }
 
 const TodoInput: React.FC = () => {
-  const handleSubmit = () => {
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
+  const handleSubmit = (e) => {
+    // 現在のURLに対してフォームの送信が行われると、結果的にページがリロードされてしまいます。
+    // そのため、event.preventDefault()を呼び出し、デフォルトの動作をキャンセルするのよ。
+    e.preventDefault()
+
+    const data: InputData = {
+      title: title,
+      content: content,
+    }
+
     axios({
       method: 'post',
       url: 'http://localhost:8000/api/todos',
@@ -18,7 +29,7 @@ const TodoInput: React.FC = () => {
       },
     })
       .then(() => {
-        console.log('success')
+        console.log('TodoInput Post success')
         // ページ更新させる
         Router.push('/todos')
       })
@@ -29,7 +40,20 @@ const TodoInput: React.FC = () => {
   return (
     <>
       <div>
-        <input type="text" />
+        <p>title</p>
+        <input
+          type="text"
+          placeholder="title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <p>content</p>
+        <input
+          type="text"
+          placeholder="content"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+        />
         <button onClick={handleSubmit}>追加</button>
       </div>
     </>
