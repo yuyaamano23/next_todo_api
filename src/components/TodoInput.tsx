@@ -12,7 +12,7 @@ const TodoInput: React.FC = () => {
   const [content, setContent] = useState('')
   const handleSubmit = (e) => {
     // 現在のURLに対してフォームの送信が行われると、結果的にページがリロードされてしまいます。
-    // そのため、event.preventDefault()を呼び出し、デフォルトの動作をキャンセルするのよ。
+    // そのため、event.preventDefault()を呼び出し、buttonのデフォルトの動作をキャンセルするのよ。
     e.preventDefault()
 
     const data: InputData = {
