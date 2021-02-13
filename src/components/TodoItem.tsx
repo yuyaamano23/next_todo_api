@@ -1,11 +1,11 @@
 import React from 'react'
 import { Todo } from 'components/Types'
 
-type Props = {
+type TodoItemProps = {
   todo: Todo
 }
 
-const TodoItem: React.FC<Props> = ({ todo }) => {
+const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
   return (
     <>
       <div>{todo.id}</div>

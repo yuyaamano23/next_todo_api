@@ -1,5 +1,5 @@
 import React from 'react'
-import TodoItem from 'components/TodoItem'
+import TodoList from 'components/TodoList'
 
 const todos = [
   {
@@ -20,14 +20,9 @@ const todos = [
 ]
 
 const Index: React.FC = () => {
-  console.log(todos)
   return (
     <>
-      <div>
-        {todos.map((todo) => (
-          <TodoItem key={todo.id} todo={todo} />
-        ))}
-      </div>
+      <TodoList todos={todos} />
     </>
   )
 }

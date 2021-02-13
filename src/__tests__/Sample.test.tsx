@@ -1,5 +1,5 @@
-import Home from 'pages/index'
+import index from 'pages/index'
 
-it('Home ページコンポーネントが存在している', () => {
-  expect(Home).toBeTruthy()
+it('index ページコンポーネントが存在している', () => {
+  expect(index).toBeTruthy()
 })
