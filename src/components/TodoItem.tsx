@@ -2,6 +2,7 @@ import React from 'react'
 import { Todo } from 'components/Types'
 import Link from 'next/link'
 import axios from 'axios'
+import Router from 'next/router'
 
 type TodoItemProps = {
   todo: Todo
@@ -22,7 +23,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
       .then(() => {
         console.log('delete success')
         // ページ更新させる
-        // Router.push('/todos')
+        Router.push('/todos')
       })
       .catch((err) => {
         console.log(err)
