@@ -2,8 +2,8 @@ import React from 'react'
 import axios from 'axios'
 
 const data = {
-  title: 'postしたいタイトル',
-  content: 'postしたい内容',
+  title: 'postもしかして行けたんご？？？',
+  content: 'post行けたかもまじでクソ嬉しい！',
 }
 
 const TodoInput: React.FC = () => {
@@ -12,10 +12,9 @@ const TodoInput: React.FC = () => {
       method: 'post',
       url: 'http://localhost:8000/api/todos',
       data: data,
-      // headers: {
-      //   "Content-Type": "application/json",
-      //   "X-WRITE-API-KEY": process.env.x_api_key
-      // }
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
       .then(() => {
         console.log('success')
