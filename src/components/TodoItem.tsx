@@ -37,7 +37,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
       <h5>内容:{todo.title}</h5>
       <button onClick={handleDelete}>削除</button>
       <Link href={`/todos/${todo.id}`}>
-        <a>記事詳細へ</a>
+        <button>記事詳細へ</button>
       </Link>
       <h5>------------------------------------------</h5>
     </>

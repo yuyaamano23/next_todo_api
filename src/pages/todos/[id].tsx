@@ -13,11 +13,9 @@ const TodoItemDetail: React.FC<TodoItemProps> = ({ todo }) => {
       <h1>ID: {todo.id}</h1>
       <h1>TITLE: {todo.title}</h1>
       <h1>内容 {todo.content}</h1>
-      <div>
-        <button>削除</button>
-      </div>
+      <button>削除</button>
       <Link href="/todos">
-        <a>back</a>
+        <button>戻る</button>
       </Link>
     </>
   )
