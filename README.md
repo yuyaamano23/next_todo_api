@@ -61,7 +61,7 @@ Router.push('/todos')
 
 </details>
 
-### sst?ssg?
+## sst?ssg?迷ったら。。。
 
 ```txt
 1️⃣ 結果整合性(Eventual Consistency)のみが求められる場合
