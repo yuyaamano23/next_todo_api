@@ -10,7 +10,6 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
     <>
       <div>{todo.id}</div>
       <div>{todo.title}</div>
-      <div>{todo.content}</div>
       <button>削除</button>
     </>
   )
