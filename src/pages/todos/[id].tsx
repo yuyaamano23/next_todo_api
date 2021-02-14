@@ -39,7 +39,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }))
   // paths：事前ビルドするパス対象を指定するパラメータ
   // fallback：事前ビルドしたパス以外にアクセスしたときのパラメータ true:カスタム404Pageを表示 false:404pageを表示
-  //   blocking, revalidateについてはREADME参照
+  //   blockingについてはREADME参照
   return { paths, fallback: 'blocking' }
 }
 
@@ -52,7 +52,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   // ページコンポーネントにpropsとしてに渡す
   return {
     props: {
+      // revalidateについてはREADME参照
       todo,
+      revalidate: 1,
     },
   }
 }
