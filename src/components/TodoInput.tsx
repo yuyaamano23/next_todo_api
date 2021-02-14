@@ -32,7 +32,7 @@ const TodoInput: React.FC = () => {
     axios({
       method: 'post',
       url: 'http://localhost:8000/api/todos',
-      data: data,
+      params: data,
       headers: {
         'Content-Type': 'application/json',
       },
