@@ -10,26 +10,36 @@ type InputData = {
 const TodoInput: React.FC = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const [isInputted, setIsInputted] = useState(true)
   const handleSubmit = (e) => {
     // 現在のURLに対してフォームの送信が行われると、結果的にページがリロードされてしまいます。
     // そのため、event.preventDefault()を呼び出し、buttonのデフォルトの動作をキャンセルするのよ。
     e.preventDefault()
 
+    // 空欄だったら追加できないようにしちゃる
+    if (!(title && content)) {
+      setIsInputted(false)
+      return
+    }
+
     const data: InputData = {
       title: title,
       content: content,
     }
+    // 空欄でない場合に追加押したら警告消す
+    setIsInputted(true)
 
     axios({
       method: 'post',
       url: 'http://localhost:8000/api/todos',
-      data: data,
+      params: data,
       headers: {
         'Content-Type': 'application/json',
       },
     })
       .then(() => {
         console.log('TodoInput Post success')
+        //  検索欄をクリア
         setTitle('')
         setContent('')
         // ページ更新させる
@@ -42,6 +52,7 @@ const TodoInput: React.FC = () => {
   return (
     <>
       <div>
+        {isInputted ? '' : <p style={{ color: 'red' }}>値を入力してください</p>}
         <p>title</p>
         <input
           type="text"
