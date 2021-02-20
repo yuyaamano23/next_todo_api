@@ -20,7 +20,7 @@ const TodoDeleteButton: React.FC<TodoItemProps> = ({ todo }) => {
       },
     })
       .then(() => {
-        console.log('delete success')
+        console.log('todo delete success')
         // ページ更新させる
         Router.push('/todos')
       })
@@ -28,6 +28,6 @@ const TodoDeleteButton: React.FC<TodoItemProps> = ({ todo }) => {
         console.log(err)
       })
   }
-  return <button onClick={handleDelete}>削除</button>
+  return <button onClick={handleDelete}>Todoを削除</button>
 }
 export default TodoDeleteButton
