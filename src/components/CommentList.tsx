@@ -33,6 +33,12 @@ const CommentList: React.FC<TodoItemProps> = ({ todo }) => {
     // 副作用を1度だけ、マウント時とアンマウント時にのみ、実行したいという場合、 [] を第2引数として渡します。
     // 今回はレンダー時に1度だけ、外部APIを呼び出したいので、第二引数に [] を渡します。
   }, [])
-  return resData.map((data) => <CommentItem key={data.id} comment={data} />)
+  return (
+    <div>
+      {resData.map((data) => (
+        <CommentItem key={data.id} comment={data} />
+      ))}
+    </div>
+  )
 }
 export default CommentList
