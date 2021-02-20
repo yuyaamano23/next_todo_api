@@ -4,6 +4,7 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import Link from 'next/link'
 import TodoEdit from 'components/TodoEdit'
 import CommentList from 'components/CommentList'
+import TodoDeleteButton from 'components/UIkit/TodoDeleteButton'
 
 type TodoItemProps = {
   todo: Todo
@@ -15,10 +16,10 @@ const TodoItemDetail: React.FC<TodoItemProps> = ({ todo }) => {
       <h1>ID: {todo.id}</h1>
       <h1>TITLE: {todo.title}</h1>
       <h1>内容: {todo.content}</h1>
-      <button>削除</button>
+      <TodoDeleteButton todo={todo} />
       <CommentList todo={todo} />
       <Link href="/todos">
-        <button>戻る</button>
+        <button>topに戻る</button>
       </Link>
       <TodoEdit todo={todo} />
     </>
