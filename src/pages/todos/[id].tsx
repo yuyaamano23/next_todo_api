@@ -13,15 +13,21 @@ type TodoItemProps = {
 const TodoItemDetail: React.FC<TodoItemProps> = ({ todo }) => {
   return (
     <>
-      <h1>ID: {todo.id}</h1>
-      <h1>TITLE: {todo.title}</h1>
-      <h1>内容: {todo.content}</h1>
-      <TodoDeleteButton todo={todo} />
+      <div style={{ display: 'flex' }}>
+        <div>
+          <h1>ID: {todo.id}</h1>
+          <h1>TITLE: {todo.title}</h1>
+          <h1>内容: {todo.content}</h1>
+          <TodoDeleteButton todo={todo} />
+        </div>
+        <div style={{ marginLeft: '300px' }}>
+          <TodoEdit todo={todo} />
+        </div>
+      </div>
       <CommentList todo={todo} />
       <Link href="/todos">
         <button>topに戻る</button>
       </Link>
-      <TodoEdit todo={todo} />
     </>
   )
 }

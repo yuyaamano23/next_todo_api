@@ -46,7 +46,6 @@ const TodoEdit: React.FC<TodoItemProps> = ({ todo }) => {
   }
   return (
     <>
-      <p>----------------------------------------</p>
       <h1>Todoを自由に編集しろ</h1>
       <p>title:</p>
       <input
