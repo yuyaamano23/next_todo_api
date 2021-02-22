@@ -19,8 +19,6 @@ const TodoSearch: React.FC = () => {
     })
       .then((res) => {
         console.log('Search success')
-        console.log(res.data)
-        console.log(keyword)
         //  検索欄をクリア
         setKeyword('')
         // 検索結果をセットする

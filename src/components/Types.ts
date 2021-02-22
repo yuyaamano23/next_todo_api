@@ -3,3 +3,9 @@ export type Todo = {
   title: string
   content: string
 }
+
+export type Comment = {
+  id: number
+  body: string
+  todo_id: number
+}
