@@ -1,5 +1,6 @@
 import React from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 import AppBar from '@material-ui/core/AppBar'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -43,6 +44,17 @@ const useStyles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up('sm')]: {
         display: 'none',
       },
+    },
+    appBarMenuItem: {
+      marginLeft: theme.spacing(2),
+      [theme.breakpoints.down('xs')]: {
+        display: 'none',
+      },
+    },
+    appBarMenuItemLink: {
+      color: 'white',
+      textDecoration: 'underline',
+      cursor: 'pointer',
     },
     // necessary for content to be below app bar
     toolbar: theme.mixins.toolbar,
@@ -99,7 +111,7 @@ export default function NavBar(props: Props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        {MENU_LIST.map(({ title, icon, href }, index) => (
+        {MENU_LIST.map(({ title, icon, href }) => (
           <ListItem
             button
             key={title}
@@ -136,6 +148,15 @@ export default function NavBar(props: Props) {
           <Typography variant="h6" noWrap>
             Hello, ToDoList👋
           </Typography>
+          {MENU_LIST.map(({ title, href }) => {
+            return (
+              <Typography className={classes.appBarMenuItem} key={title} noWrap>
+                <Link href={href}>
+                  <span className={classes.appBarMenuItemLink}>{title}</span>
+                </Link>
+              </Typography>
+            )
+          })}
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
