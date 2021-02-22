@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Comment } from 'components/Types'
-import Router from 'next/router'
+import styles from 'styles/components/UIkit/CommentDeleteButton.module.scss'
 
 type CommentItemProps = {
   comment: Comment
@@ -30,6 +30,10 @@ const CommentDeleteButton: React.FC<CommentItemProps> = ({ comment }) => {
         console.log(err)
       })
   }
-  return <button onClick={handleDelete}>コメントを削除</button>
+  return (
+    <button className={styles.testClass} onClick={handleDelete}>
+      コメントを削除
+    </button>
+  )
 }
 export default CommentDeleteButton
