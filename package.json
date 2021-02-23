@@ -13,11 +13,13 @@
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
+    "@zeit/next-sass": "^1.0.1",
     "axios": "^0.21.1",
     "next": "10.0.6",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "react-swipeable-views": "^0.13.9"
+    "react-swipeable-views": "^0.13.9",
+    "webpack": "^5.24.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",
@@ -35,7 +37,7 @@
     "lint-staged": ">=10",
     "prettier": "^2.2.1",
     "sanitize.css": "^12.0.1",
-    "sass": "^1.32.7",
+    "sass": "^1.32.8",
     "ts-jest": "^26.5.1",
     "typescript": "^4.1.5"
   },
