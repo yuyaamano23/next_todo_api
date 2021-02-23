@@ -6,6 +6,7 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from 'components/Theme'
 import NavBar from 'components/UIkit/NavBar'
+import Layout from 'components/Layout'
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   React.useEffect(() => {
@@ -18,19 +19,21 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 
   return (
     <React.Fragment>
-      <Head>
-        <title>My page</title>
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
-        />
-      </Head>
-      <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
-        <NavBar />
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <Layout>
+        <Head>
+          <title>My page</title>
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width"
+          />
+        </Head>
+        <ThemeProvider theme={theme}>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
+          <NavBar />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </Layout>
     </React.Fragment>
   )
 }
