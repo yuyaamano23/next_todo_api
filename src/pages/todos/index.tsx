@@ -2,6 +2,7 @@ import React from 'react'
 import TodoInput from 'components/TodoInput'
 import TodoList from 'components/TodoList'
 import TodoSearch from 'components/TodoSearch'
+import Tabs from 'components/UIkit/Tabs'
 import { GetStaticProps } from 'next'
 import { Todo } from 'components/Types'
 
@@ -14,6 +15,7 @@ const Index: React.FC<TodosServerSideIndexProps> = ({
 }: TodosServerSideIndexProps) => {
   return (
     <>
+      <Tabs />
       <div style={{ display: 'flex' }}>
         <div>
           <h1>Hello, ToDoList👋</h1>
