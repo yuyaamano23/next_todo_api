@@ -2,7 +2,7 @@
 
 - ~~記事編集機能~~
 - ~~検索機能~~
-- style の適応
+- ~~style の適応~~
 - Redux(hooks 利用)
 - ユーザ認証
 - いいね機能
@@ -12,6 +12,10 @@
 - Vercel デプロイ
 - useMemo によるチューニング
 - firebase 認証
+
+## 環境構築
+
+[Next.js 環境構築](https://suwaru.tokyo/%E3%80%90react%E3%80%91next-js%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%E3%80%90sass-eslint%E3%80%91/)<br>
 
 ## 関数コンポーネントの型は次のように書くのがお勧めです
 
@@ -87,6 +91,49 @@ revalidate を return することで ISR を実装実現できる
 1. getServerSideProps を使う or
 2. [SWR](https://swr.vercel.app/) 等でクライエント側で確実に更新する
 ```
+
+## スタイルのついて
+
+**CS Modules、君に決めた!!**<br>
+[Next.js に CSS Modules を導入する](https://zenn.dev/catnose99/scraps/5e3d51d75113d3)<br>
+[Next.js に materialUI を組み込む](https://www.youtube.com/watch?v=PMOiBn-dg6E)<br>
+[Material UI のスタイル変更方法](https://www.youtube.com/watch?v=9xgbLe_1Czg&t=315s)<br>
+※ Material-UI のサンプルコードと同じく Hook API を採用
+
+```js
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    menuButton: {
+      marginRight: theme.spacing(2),
+      [theme.breakpoints.up('sm')]: {
+        display: 'none',
+      },
+    },
+  })
+)
+
+export default function NavBar(props: Props) {
+  const classes = useStyles();
+  return (
+    <IconButton  className={classes.menuButton} />
+  )
+```
+
+<details>
+
+<summary>`.modules.scss`ファイルをどこに配置するか</summary>
+
+```
+1. componentsディレクトリと同じ階層に置く
+components/Button.tsxのスタイルはcomponents/Button.module.scssに書くパターン
+
+2. stylesのようなディレクトリを作ってcomponentsと同じ階層で配置
+components/Button.tsxのスタイルはstyles/components/Button.module.scssに書くパターン
+
+Zennの場合にはcomponentsディレクトリのファイル数がけっこう多いので、見通しをよくするために（2）のパターンでいくことにした。
+```
+
+</details>
 
 ## VScode 拡張機能
 
