@@ -92,8 +92,7 @@ const MENU_LIST = [
   },
 ]
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default function NavBar(props: Props) {
+const NavBar: React.FC<Props> = (props) => {
   const { window } = props
   const classes = useStyles()
   const theme = useTheme()
@@ -158,7 +157,6 @@ export default function NavBar(props: Props) {
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer
             container={container}
@@ -170,7 +168,7 @@ export default function NavBar(props: Props) {
               paper: classes.drawerPaper,
             }}
             ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
+              keepMounted: true,
             }}
           >
             {drawer}
@@ -184,3 +182,4 @@ export default function NavBar(props: Props) {
     </div>
   )
 }
+export default NavBar
