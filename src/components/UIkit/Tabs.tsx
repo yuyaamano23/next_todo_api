@@ -14,6 +14,8 @@ import { Todo } from 'components/Types'
 import TodoList from 'components/TodoList'
 import TodoInput from 'components/TodoInput'
 
+import styles from 'styles/components/UIkit/Tabs.module.scss'
+
 type TodoListProps = {
   todos: Todo[]
 }
@@ -29,6 +31,7 @@ function TabPanel(props: TabPanelProps) {
 
   return (
     <div
+      className={styles.TodosBodyWrapper}
       role="tabpanel"
       hidden={value !== index}
       id={`scrollable-force-tabpanel-${index}`}
@@ -88,8 +91,10 @@ const ScrollableTabsButtonForce: React.FC<TodoListProps> = ({ todos }) => {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <TodoInput />
-        <TodoList todos={todos} />
+        <div>
+          <TodoInput />
+          <TodoList todos={todos} />
+        </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <TodoSearch />
