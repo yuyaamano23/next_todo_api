@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
@@ -7,6 +8,15 @@ import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted'
 import SearchIcon from '@material-ui/icons/Search'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
+
+import TodoSearch from 'components/TodoSearch'
+import { Todo } from 'components/Types'
+import TodoList from 'components/TodoList'
+import TodoInput from 'components/TodoInput'
+
+type TodoListProps = {
+  todos: Todo[]
+}
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -49,7 +59,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-const ScrollableTabsButtonForce: React.FC = () => {
+const ScrollableTabsButtonForce: React.FC<TodoListProps> = ({ todos }) => {
   const classes = useStyles()
   const [value, setValue] = React.useState(0)
 
@@ -78,10 +88,11 @@ const ScrollableTabsButtonForce: React.FC = () => {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        Item One
+        <TodoInput />
+        <TodoList todos={todos} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <TodoSearch />
       </TabPanel>
     </div>
   )

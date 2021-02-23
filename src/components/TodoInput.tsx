@@ -53,14 +53,14 @@ const TodoInput: React.FC = () => {
     <>
       <div>
         {isInputted ? '' : <p style={{ color: 'red' }}>値を入力してください</p>}
-        <p>title</p>
+        <h3>title</h3>
         <input
           type="text"
           placeholder="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <p>content</p>
+        <h3>content</h3>
         <input
           type="text"
           placeholder="content"
