@@ -74,10 +74,22 @@ const TodoInput: React.FC = () => {
         console.log(err)
       })
   }
+  // Enter（リターン）キーの発火イベント動作
+  const enterEvent = (e) => {
+    console.log('enter event')
+    handleSubmit(e)
+    return false
+  }
+
   return (
     <div className={styles.todoInputWrapper}>
       {isInputted ? '' : <p style={{ color: 'red' }}>値を入力してください</p>}
-      <form className={classes.root} noValidate autoComplete="off">
+      <form
+        className={classes.root}
+        noValidate
+        autoComplete="off"
+        onSubmit={enterEvent}
+      >
         <TextField
           id="outlined-basic"
           label="title"
@@ -87,6 +99,13 @@ const TodoInput: React.FC = () => {
           onChange={(e) => setTitle(e.target.value)}
           className={classes.input}
         />
+      </form>
+      <form
+        className={classes.root}
+        noValidate
+        autoComplete="off"
+        onSubmit={enterEvent}
+      >
         <TextField
           id="outlined-basic"
           label="content"
