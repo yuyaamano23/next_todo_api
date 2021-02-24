@@ -29,30 +29,20 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
   const classes = useStyles()
   return (
     <>
-      <div className={(classes.root, styles.todoItemWrapper)}>
-        <Alert
-          icon={<CheckCircleOutlineIcon fontSize="inherit" />}
-          severity="success"
-        >
-          id:{todo.id}
-          内容:{todo.title}
-          <p>
-            <TodoDeleteButton todo={todo} />
-            <Link href={`/todos/${todo.id}`}>
-              <button>記事詳細へ</button>
-            </Link>
-          </p>
-        </Alert>
-      </div>
-
-      {/* <h5>------------------------------------------</h5>
-      <h5>id:{todo.id}</h5>
-      <h5>内容:{todo.title}</h5>
-      <TodoDeleteButton todo={todo} />
       <Link href={`/todos/${todo.id}`}>
-        <button>記事詳細へ</button>
+        <div className={(classes.root, styles.todoItemWrapper)}>
+          <Alert
+            icon={<CheckCircleOutlineIcon fontSize="inherit" />}
+            severity="success"
+          >
+            id:{todo.id}
+            内容:{todo.title}
+            <p>
+              <TodoDeleteButton todo={todo} />
+            </p>
+          </Alert>
+        </div>
       </Link>
-      <h5>------------------------------------------</h5> */}
     </>
   )
 }
