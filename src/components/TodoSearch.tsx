@@ -30,7 +30,7 @@ const TodoSearch: React.FC = () => {
   }
   return (
     <div>
-      <h1 style={{ marginLeft: '150px' }}>Search Me🔎</h1>
+      <h1>Search Me🔎</h1>
       <p>keyword</p>
       <input
         type="text"

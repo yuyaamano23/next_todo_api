@@ -2,12 +2,15 @@ import React from 'react'
 import axios from 'axios'
 import { Todo } from 'components/Types'
 import Router from 'next/router'
+import DeleteIcon from '@material-ui/icons/Delete'
+import styles from 'styles/components/UIkit/TodoDeleteButton.module.scss'
 
-type TodoItemProps = {
+type TodoDeleteProps = {
   todo: Todo
+  size?: 'small' | 'inherit' | 'default' | 'large'
 }
 
-const TodoDeleteButton: React.FC<TodoItemProps> = ({ todo }) => {
+const TodoDeleteButton: React.FC<TodoDeleteProps> = ({ todo, size }) => {
   const handleDelete = (e) => {
     // ボタンのデフォルトの挙動を葬り去る
     e.preventDefault()
@@ -28,6 +31,12 @@ const TodoDeleteButton: React.FC<TodoItemProps> = ({ todo }) => {
         console.log(err)
       })
   }
-  return <button onClick={handleDelete}>Todoを削除</button>
+  return (
+    <DeleteIcon
+      className={styles.deleteIcon}
+      fontSize={size}
+      onClick={handleDelete}
+    />
+  )
 }
 export default TodoDeleteButton

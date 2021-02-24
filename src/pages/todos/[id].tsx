@@ -2,7 +2,7 @@ import React from 'react'
 import { Todo } from 'components/Types'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Link from 'next/link'
-import TodoEdit from 'components/TodoEdit'
+// import TodoEdit from 'components/TodoEdit'
 import CommentList from 'components/CommentList'
 import TodoDeleteButton from 'components/UIkit/TodoDeleteButton'
 
@@ -18,11 +18,9 @@ const TodoItemDetail: React.FC<TodoItemProps> = ({ todo }) => {
           <h1>ID: {todo.id}</h1>
           <h1>TITLE: {todo.title}</h1>
           <h1>内容: {todo.content}</h1>
-          <TodoDeleteButton todo={todo} />
+          <TodoDeleteButton size="large" todo={todo} />
         </div>
-        <div style={{ marginLeft: '300px' }}>
-          <TodoEdit todo={todo} />
-        </div>
+        {/* <TodoEdit todo={todo} /> */}
       </div>
       <CommentList todo={todo} />
       <Link href="/todos">
