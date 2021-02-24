@@ -45,7 +45,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
           >
             <div className={styles.content}>
               <p>id:{todo.id}</p>
-              <p>内容:{todo.title}</p>
+              <p>title:{todo.title}</p>
               <div className={styles.todoItemDeleteButton}>
                 <TodoDeleteButton todo={todo} />
               </div>
