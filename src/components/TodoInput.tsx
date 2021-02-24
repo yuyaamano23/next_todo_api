@@ -74,7 +74,7 @@ const TodoInput: React.FC = () => {
           label="title"
           variant="outlined"
           type="text"
-          // value={title}
+          value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
         <TextField
@@ -82,7 +82,7 @@ const TodoInput: React.FC = () => {
           label="content"
           variant="outlined"
           type="text"
-          // value={content}
+          value={content}
           onChange={(e) => setContent(e.target.value)}
         />
       </form>
