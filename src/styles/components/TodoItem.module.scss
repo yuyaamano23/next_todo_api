@@ -1,6 +1,8 @@
 .todoItemWrapper {
-  margin-top: 10px;
   transition: all 0.2s ease-in-out;
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 10px;
 }
 
 .todoItemWrapper:hover {

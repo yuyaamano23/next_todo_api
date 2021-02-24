@@ -7,8 +7,6 @@ import Tab from '@material-ui/core/Tab'
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted'
 import SearchIcon from '@material-ui/icons/Search'
 
-import styles from 'styles/components/UIkit/Tabs.module.scss'
-
 function a11yProps(index: any) {
   return {
     id: `scrollable-force-tab-${index}`,
