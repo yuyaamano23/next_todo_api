@@ -32,6 +32,10 @@ const Btn: React.FC<Props> = ({ x, y, z }) => { ... };
 const Btn: React.FC = () => { ... };
 ```
 
+## TypeScript について
+
+[【TypeScript】Generics(ジェネリックス)を理解する](https://qiita.com/k-penguin-sato/items/9baa959e8919157afcd4)<br>
+
 ## コードスニペット
 
 <details>
@@ -92,13 +96,17 @@ revalidate を return することで ISR を実装実現できる
 2. [SWR](https://swr.vercel.app/) 等でクライエント側で確実に更新する
 ```
 
-## スタイルのついて
+## スタイルついて
 
 **CS Modules、君に決めた!!**<br>
 [Next.js に CSS Modules を導入する](https://zenn.dev/catnose99/scraps/5e3d51d75113d3)<br>
 [Next.js に materialUI を組み込む](https://www.youtube.com/watch?v=PMOiBn-dg6E)<br>
 [Material UI のスタイル変更方法](https://www.youtube.com/watch?v=9xgbLe_1Czg&t=315s)<br>
 ※ Material-UI のサンプルコードと同じく Hook API を採用
+
+- pages コンポーネントには cssmodule でのスタイルが直接あたらないため layout コンポーネントでラッピングしてあげる<br>
+  [参考記事 1](https://32imuf.com/javascript/nextjs/learn-course/first/)<br>
+  [参考記事 2](https://www.imatomix.com/imatomix/notes/1591872503)<br>
 
 ```js
 const useStyles = makeStyles((theme: Theme) =>
