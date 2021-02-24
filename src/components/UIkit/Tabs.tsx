@@ -7,6 +7,8 @@ import Tab from '@material-ui/core/Tab'
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted'
 import SearchIcon from '@material-ui/icons/Search'
 
+import styles from 'styles/components/UIkit/Tabs.module.scss'
+
 function a11yProps(index: any) {
   return {
     id: `scrollable-force-tab-${index}`,
@@ -34,7 +36,7 @@ const ScrollableTabsButtonForce: React.FC<{
   }
 
   return (
-    <div className={classes.root}>
+    <div className={(classes.root, styles.tabsWrapper)}>
       <AppBar position="static" color="default">
         <Tabs
           value={value}

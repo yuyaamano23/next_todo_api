@@ -1,16 +1,26 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import Router from 'next/router'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import { createStyles, makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
-const useStyles = makeStyles((theme: Theme) =>
+import styles from 'styles/components/TodoInput.module.scss'
+
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       '& > *': {
-        margin: theme.spacing(1),
-        width: '25ch',
+        marginTop: '25px',
+        width: '85%',
       },
+    },
+    input: {
+      backgroundColor: 'white',
+    },
+    button: {
+      marginTop: '15px',
+      marginBottom: '15px',
     },
   })
 )
@@ -65,9 +75,8 @@ const TodoInput: React.FC = () => {
       })
   }
   return (
-    <div>
+    <div className={styles.todoInputWrapper}>
       {isInputted ? '' : <p style={{ color: 'red' }}>値を入力してください</p>}
-      {/* <h3>title</h3> */}
       <form className={classes.root} noValidate autoComplete="off">
         <TextField
           id="outlined-basic"
@@ -76,6 +85,7 @@ const TodoInput: React.FC = () => {
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          className={classes.input}
         />
         <TextField
           id="outlined-basic"
@@ -84,22 +94,17 @@ const TodoInput: React.FC = () => {
           type="text"
           value={content}
           onChange={(e) => setContent(e.target.value)}
+          className={classes.input}
         />
       </form>
-      {/* <input
-          type="text"
-          placeholder="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <h3>content</h3>
-        <input
-          type="text"
-          placeholder="content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        /> */}
-      <button onClick={handleSubmit}>追加</button>
+      <Button
+        variant="outlined"
+        color="primary"
+        className={classes.button}
+        onClick={handleSubmit}
+      >
+        追加
+      </Button>
     </div>
   )
 }
