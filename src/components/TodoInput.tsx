@@ -96,15 +96,15 @@ const TodoInput: React.FC = () => {
           onChange={(e) => setContent(e.target.value)}
           className={classes.input}
         />
+        <Button
+          variant="outlined"
+          color="primary"
+          className={classes.button}
+          onClick={handleSubmit}
+        >
+          追加
+        </Button>
       </form>
-      <Button
-        variant="outlined"
-        color="primary"
-        className={classes.button}
-        onClick={handleSubmit}
-      >
-        追加
-      </Button>
     </div>
   )
 }

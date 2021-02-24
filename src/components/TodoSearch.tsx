@@ -2,7 +2,33 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import TodoItem from 'components/TodoItem'
 
+import { createStyles, makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+
+import styles from 'styles/components/TodoSearch.module.scss'
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    root: {
+      '& > *': {
+        marginTop: '25px',
+        width: '85%',
+      },
+    },
+    input: {
+      backgroundColor: 'white',
+    },
+    button: {
+      marginTop: '15px',
+      marginBottom: '15px',
+    },
+  })
+)
+
 const TodoSearch: React.FC = () => {
+  const classes = useStyles()
+
   const [keyword, setKeyword] = useState<string>('')
   const [resData, setResData] = useState([])
 
@@ -29,16 +55,26 @@ const TodoSearch: React.FC = () => {
       })
   }
   return (
-    <div>
-      <h1>Search Me🔎</h1>
-      <p>keyword</p>
-      <input
-        type="text"
-        placeholder="keyword"
-        value={keyword}
-        onChange={(e) => setKeyword(e.target.value)}
-      />
-      <button onClick={handleSubmit}>検索</button>
+    <div className={styles.todoSearchWrapper}>
+      <form className={classes.root} noValidate autoComplete="off">
+        <TextField
+          id="outlined-basic"
+          label="keyword"
+          variant="outlined"
+          type="text"
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
+          className={classes.input}
+        />
+        <Button
+          variant="outlined"
+          color="primary"
+          className={classes.button}
+          onClick={handleSubmit}
+        >
+          検索
+        </Button>
+      </form>
       {resData.map((data) => (
         <TodoItem key={data.id} todo={data} />
       ))}
