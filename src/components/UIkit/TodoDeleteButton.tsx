@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Todo } from 'components/Types'
 import Router from 'next/router'
 import DeleteIcon from '@material-ui/icons/Delete'
+import styles from 'styles/components/UIkit/TodoDeleteButton.module.scss'
 
 type TodoDeleteProps = {
   todo: Todo
@@ -30,6 +31,12 @@ const TodoDeleteButton: React.FC<TodoDeleteProps> = ({ todo, size }) => {
         console.log(err)
       })
   }
-  return <DeleteIcon fontSize={size} onClick={handleDelete} />
+  return (
+    <DeleteIcon
+      className={styles.deleteIcon}
+      fontSize={size}
+      onClick={handleDelete}
+    />
+  )
 }
 export default TodoDeleteButton

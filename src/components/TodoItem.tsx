@@ -44,8 +44,8 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
             severity="success"
           >
             <div className={styles.content}>
-              id:{todo.id}
-              内容:{todo.title}
+              <p>id:{todo.id}</p>
+              <p>内容:{todo.title}</p>
               <div className={styles.todoItemDeleteButton}>
                 <TodoDeleteButton todo={todo} />
               </div>

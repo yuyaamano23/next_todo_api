@@ -13,6 +13,16 @@
   align-items: center;
 }
 
+.content p {
+  padding: 0px;
+  margin: 0px;
+}
+
+// 2番目の要素
+.content p:nth-child(2) {
+  margin-left: 10px;
+}
+
 .todoItemDeleteButton {
   margin-left: auto;
 }
