@@ -54,9 +54,21 @@ const TodoSearch: React.FC = () => {
         console.log(err)
       })
   }
+
+  // Enter（リターン）キーの発火イベント動作
+  const enterEvent = (e) => {
+    handleSubmit(e)
+    return false
+  }
+
   return (
     <div className={styles.todoSearchWrapper}>
-      <form className={classes.root} noValidate autoComplete="off">
+      <form
+        className={classes.root}
+        noValidate
+        autoComplete="off"
+        onSubmit={enterEvent}
+      >
         <TextField
           id="outlined-basic"
           label="keyword"
