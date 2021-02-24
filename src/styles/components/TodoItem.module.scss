@@ -1,3 +1,8 @@
 .todoItemWrapper {
   margin-top: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.todoItemWrapper:hover {
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.65);
 }
