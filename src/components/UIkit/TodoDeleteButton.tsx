@@ -6,9 +6,10 @@ import DeleteIcon from '@material-ui/icons/Delete'
 
 type TodoDeleteProps = {
   todo: Todo
+  size?: 'small' | 'inherit' | 'default' | 'large'
 }
 
-const TodoDeleteButton: React.FC<TodoDeleteProps> = ({ todo }) => {
+const TodoDeleteButton: React.FC<TodoDeleteProps> = ({ todo, size }) => {
   const handleDelete = (e) => {
     // ボタンのデフォルトの挙動を葬り去る
     e.preventDefault()
@@ -29,6 +30,6 @@ const TodoDeleteButton: React.FC<TodoDeleteProps> = ({ todo }) => {
         console.log(err)
       })
   }
-  return <DeleteIcon onClick={handleDelete} />
+  return <DeleteIcon fontSize={size} onClick={handleDelete} />
 }
 export default TodoDeleteButton

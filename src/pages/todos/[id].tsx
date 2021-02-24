@@ -18,7 +18,7 @@ const TodoItemDetail: React.FC<TodoItemProps> = ({ todo }) => {
           <h1>ID: {todo.id}</h1>
           <h1>TITLE: {todo.title}</h1>
           <h1>内容: {todo.content}</h1>
-          <TodoDeleteButton todo={todo} />
+          <TodoDeleteButton size="large" todo={todo} />
         </div>
         {/* <TodoEdit todo={todo} /> */}
       </div>
