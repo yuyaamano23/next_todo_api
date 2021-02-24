@@ -2,12 +2,13 @@ import React from 'react'
 import axios from 'axios'
 import { Todo } from 'components/Types'
 import Router from 'next/router'
+import DeleteIcon from '@material-ui/icons/Delete'
 
-type TodoItemProps = {
+type TodoDeleteProps = {
   todo: Todo
 }
 
-const TodoDeleteButton: React.FC<TodoItemProps> = ({ todo }) => {
+const TodoDeleteButton: React.FC<TodoDeleteProps> = ({ todo }) => {
   const handleDelete = (e) => {
     // ボタンのデフォルトの挙動を葬り去る
     e.preventDefault()
@@ -28,6 +29,6 @@ const TodoDeleteButton: React.FC<TodoItemProps> = ({ todo }) => {
         console.log(err)
       })
   }
-  return <button onClick={handleDelete}>Todoを削除</button>
+  return <DeleteIcon onClick={handleDelete} />
 }
 export default TodoDeleteButton

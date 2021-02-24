@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme: Theme) =>
         marginTop: theme.spacing(2),
       },
     },
+    circleIcon: {
+      paddingTop: '7px',
+    },
   })
 )
 
@@ -32,14 +35,21 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
       <Link href={`/todos/${todo.id}`}>
         <div className={(classes.root, styles.todoItemWrapper)}>
           <Alert
-            icon={<CheckCircleOutlineIcon fontSize="inherit" />}
+            icon={
+              <CheckCircleOutlineIcon
+                className={classes.circleIcon}
+                fontSize="default"
+              />
+            }
             severity="success"
           >
-            id:{todo.id}
-            内容:{todo.title}
-            <p>
-              <TodoDeleteButton todo={todo} />
-            </p>
+            <div className={styles.content}>
+              id:{todo.id}
+              内容:{todo.title}
+              <div className={styles.todoItemDeleteButton}>
+                <TodoDeleteButton todo={todo} />
+              </div>
+            </div>
           </Alert>
         </div>
       </Link>
