@@ -10,14 +10,18 @@ type TodoItemProps = {
 }
 
 const TodoDetailMain: React.FC<TodoItemProps> = ({ todo }) => {
-  const [isEditOpen, setIsEditOpen] = useState(false)
+  const [isEditOpen, setIsEditOpen] = useState(true)
   return (
     <>
       <div className={styles.wrapper}>
         <div>
-          <h1>ID: {todo.id}</h1>
-          <h1>TITLE: {todo.title}</h1>
-          <h1>内容: {todo.content}</h1>
+          <div className={styles.content}>
+            <div className={styles.contentText}>
+              <h4>ID: {todo.id}</h4>
+              <h4>TITLE: {todo.title}</h4>
+              <h4>内容: {todo.content}</h4>
+            </div>
+          </div>
 
           <TodoDeleteButton size="large" todo={todo} />
 
