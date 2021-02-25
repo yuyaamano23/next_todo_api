@@ -7,7 +7,7 @@
 - ユーザ認証
 - いいね機能
 - ~~コメント機能~~
-- 画像投稿機能
+- 画像投稿機能(プロフ画像とか)
 - テストちゃんと書く
 - Vercel デプロイ
 - useMemo によるチューニング
@@ -48,6 +48,30 @@ Router.push('/todos')
 ```
 
 </details>
+
+<details>
+<summary>フォームenterキーイベント発火方法 *formタグ1つにつき、inputタグ1つ</summary>
+
+```js
+const enterEvent = (e) => {
+  handleSubmit(e)
+  return false
+}
+```
+
+```html
+<form
+  className="{classes.root}"
+  novalidate
+  autocomplete="off"
+  onSubmit="{enterEvent}"
+/>
+```
+
+</details>
+
+- [if 文は JSX の中で書け](https://qiita.com/horri1520/items/fa07f5baa6028b9746ce)<br>
+- [React Hooks と TypeScript で子コンポーネントに state を渡す方法まとめ](https://qiita.com/akifumiyoshimu/items/ec9fdb9dd7d649c2f3dc)<br>
 
 ## Data Fetchingn
 
@@ -103,6 +127,7 @@ revalidate を return することで ISR を実装実現できる
 [Next.js に materialUI を組み込む](https://www.youtube.com/watch?v=PMOiBn-dg6E)<br>
 [Material UI のスタイル変更方法](https://www.youtube.com/watch?v=9xgbLe_1Czg&t=315s)<br>
 ※ Material-UI のサンプルコードと同じく Hook API を採用
+※ Material-UI は p タグを返すコンポーネントのあるのでブロック要素にブロック要素をネストしてしまいエラーになることがある(このプロジェクトでは Tabs.tsx で起きた)<br>
 
 - pages コンポーネントには cssmodule でのスタイルが直接あたらないため layout コンポーネントでラッピングしてあげる<br>
   [参考記事 1](https://32imuf.com/javascript/nextjs/learn-course/first/)<br>
@@ -142,6 +167,10 @@ Zennの場合にはcomponentsディレクトリのファイル数がけっこう
 ```
 
 </details>
+
+## テストについて
+
+[React テスト応用、テストに悩む人へ](https://zenn.dev/tkdn/books/react-testing-patterns)<br>
 
 ## VScode 拡張機能
 
