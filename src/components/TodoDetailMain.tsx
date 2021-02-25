@@ -3,6 +3,8 @@ import { Todo } from 'components/Types'
 import TodoEdit from 'components/TodoEdit'
 import TodoDeleteButton from 'components/UIkit/TodoDeleteButton'
 import EditIcon from '@material-ui/icons/Edit'
+import InsertCommentIcon from '@material-ui/icons/InsertComment'
+import CommentPostForm from 'components/CommentPostForm'
 import styles from 'styles/components/TodoDetailMain.module.scss'
 
 type TodoItemProps = {
@@ -10,7 +12,8 @@ type TodoItemProps = {
 }
 
 const TodoDetailMain: React.FC<TodoItemProps> = ({ todo }) => {
-  const [isEditOpen, setIsEditOpen] = useState(true)
+  const [isTodoEditOpen, setIsTodoEditOpen] = useState(true)
+  const [isCommentPostOpen, setIsCommentPostOpen] = useState(true)
   return (
     <>
       <div className={styles.wrapper}>
@@ -28,10 +31,21 @@ const TodoDetailMain: React.FC<TodoItemProps> = ({ todo }) => {
           <EditIcon
             fontSize="large"
             className={styles.editIcon}
-            onClick={() => setIsEditOpen(!isEditOpen)}
+            onClick={() => setIsTodoEditOpen(!isTodoEditOpen)}
           />
-          <div id="edit" className={isEditOpen ? styles.formVisible : ''}>
+
+          <InsertCommentIcon
+            fontSize="large"
+            className={styles.commentIcon}
+            onClick={() => setIsCommentPostOpen(!isCommentPostOpen)}
+          />
+
+          <div className={isTodoEditOpen ? styles.formVisible : ''}>
             <TodoEdit todo={todo} />
+          </div>
+
+          <div className={isCommentPostOpen ? styles.formVisible : ''}>
+            <CommentPostForm todo={todo} />
           </div>
         </div>
       </div>

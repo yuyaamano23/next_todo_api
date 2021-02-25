@@ -127,7 +127,7 @@ const TodoEdit: React.FC<TodoItemProps> = ({ todo }) => {
             className={classes.button}
             onClick={handleSubmit}
           >
-            編集
+            Todoを編集
           </Button>
         </form>
       </div>

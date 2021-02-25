@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { Todo } from 'components/Types'
 import Router from 'next/router'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
@@ -25,16 +26,19 @@ const useStyles = makeStyles(() =>
   })
 )
 
-type InputData = {
-  title: string
-  content: string
+type TodoItemProps = {
+  todo: Todo
 }
 
-const TodoPostForm: React.FC = () => {
+type InputData = {
+  body: string
+  todo_id: number
+}
+
+const CommentPostForm: React.FC<TodoItemProps> = ({ todo }) => {
   const classes = useStyles()
 
-  const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
+  const [commentBody, setCommentBody] = useState('')
   const [isInputted, setIsInputted] = useState(true)
   const handleSubmit = (e) => {
     // 現在のURLに対してフォームの送信が行われると、結果的にページがリロードされてしまいます。
@@ -42,21 +46,21 @@ const TodoPostForm: React.FC = () => {
     e.preventDefault()
 
     // 空欄だったら追加できないようにしちゃる
-    if (!(title && content)) {
+    if (!commentBody) {
       setIsInputted(false)
       return
     }
 
     const data: InputData = {
-      title: title,
-      content: content,
+      body: commentBody,
+      todo_id: todo.id,
     }
     // 空欄でない場合に追加押したら警告消す
     setIsInputted(true)
 
     axios({
       method: 'post',
-      url: 'http://localhost:8000/api/todos',
+      url: 'http://localhost:8000/api/comments',
       params: data,
       headers: {
         'Content-Type': 'application/json',
@@ -65,10 +69,9 @@ const TodoPostForm: React.FC = () => {
       .then(() => {
         console.log('TodoInput Post success')
         //  検索欄をクリア
-        setTitle('')
-        setContent('')
+        setCommentBody('')
         // ページ更新させる
-        Router.push('/todos')
+        Router.push(`/todos/${todo.id}`)
       })
       .catch((err) => {
         console.log(err)
@@ -92,27 +95,11 @@ const TodoPostForm: React.FC = () => {
       >
         <TextField
           id="outlined-basic"
-          label="title"
-          variant="outlined"
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className={classes.input}
-        />
-      </form>
-      <form
-        className={classes.root}
-        noValidate
-        autoComplete="off"
-        onSubmit={enterEvent}
-      >
-        <TextField
-          id="outlined-basic"
           label="content"
           variant="outlined"
           type="text"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
+          //   value={content}
+          onChange={(e) => setCommentBody(e.target.value)}
           className={classes.input}
         />
         <Button
@@ -121,10 +108,10 @@ const TodoPostForm: React.FC = () => {
           className={classes.button}
           onClick={handleSubmit}
         >
-          追加
+          コメントを追加
         </Button>
       </form>
     </div>
   )
 }
-export default TodoPostForm
+export default CommentPostForm
