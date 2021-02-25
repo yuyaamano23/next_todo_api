@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Todo } from 'components/Types'
 import TodoEdit from 'components/TodoEdit'
 import TodoDeleteButton from 'components/UIkit/TodoDeleteButton'
-
+import EditIcon from '@material-ui/icons/Edit'
 import styles from 'styles/components/TodoDetailMain.module.scss'
 
 type TodoItemProps = {
@@ -10,6 +10,7 @@ type TodoItemProps = {
 }
 
 const TodoDetailMain: React.FC<TodoItemProps> = ({ todo }) => {
+  const [isEditOpen, setIsEditOpen] = useState(false)
   return (
     <>
       <div className={styles.wrapper}>
@@ -20,10 +21,14 @@ const TodoDetailMain: React.FC<TodoItemProps> = ({ todo }) => {
 
           <TodoDeleteButton size="large" todo={todo} />
 
-          <details>
-            <summary>✏️編集する</summary>
+          <EditIcon
+            fontSize="large"
+            className={styles.editIcon}
+            onClick={() => setIsEditOpen(!isEditOpen)}
+          />
+          <div id="edit" className={isEditOpen ? styles.formVisible : ''}>
             <TodoEdit todo={todo} />
-          </details>
+          </div>
         </div>
       </div>
     </>

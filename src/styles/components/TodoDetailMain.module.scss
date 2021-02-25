@@ -2,25 +2,14 @@
   margin: 0 auto;
 }
 
-.wrapper details {
-  transition: 0.5s;
-  //   background-color: cadetblue;
+.editIcon {
+  margin-left: 15px;
 }
 
-.wrapper details[open] {
-  //   background-color: cadetblue;
+.editIcon:hover {
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.65);
 }
 
-.wrapper summary::-webkit-details-marker {
+.formVisible {
   display: none;
-  outline: none;
-}
-
-.wrapper summary:active {
-  //   background-color: cadetblue;
-}
-
-.wrapper summary:hover {
-  cursor: pointer;
-  background-color: #efefef;
 }
