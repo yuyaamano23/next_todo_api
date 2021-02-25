@@ -4,7 +4,7 @@ import { GetStaticProps } from 'next'
 import { Todo } from 'components/Types'
 import TodoSearch from 'components/TodoSearch'
 import TodoList from 'components/TodoList'
-import TodoInput from 'components/TodoInput'
+import TodoPostForm from 'components/TodoPostForm'
 
 type TodosServerSideIndexProps = {
   todos: Todo[]
@@ -24,7 +24,7 @@ const Index: React.FC<TodosServerSideIndexProps> = ({
       />
       {TabState == 0 ? (
         <div>
-          <TodoInput />
+          <TodoPostForm />
           <TodoList todos={todos} />
         </div>
       ) : (

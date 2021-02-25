@@ -1,5 +1,5 @@
-import TodoInput from 'components/TodoInput'
+import TodoPostForm from 'components/TodoPostForm'
 
-it('TodoInput コンポーネントが存在している', () => {
-  expect(TodoInput).toBeTruthy()
+it('TodoPostForm コンポーネントが存在している', () => {
+  expect(TodoPostForm).toBeTruthy()
 })
