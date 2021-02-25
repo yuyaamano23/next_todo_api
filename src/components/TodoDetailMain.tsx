@@ -18,12 +18,12 @@ const TodoDetailMain: React.FC<TodoItemProps> = ({ todo }) => {
           <h1>TITLE: {todo.title}</h1>
           <h1>内容: {todo.content}</h1>
 
+          <TodoDeleteButton size="large" todo={todo} />
+
           <details>
             <summary>✏️編集する</summary>
             <TodoEdit todo={todo} />
           </details>
-
-          <TodoDeleteButton size="large" todo={todo} />
         </div>
       </div>
     </>

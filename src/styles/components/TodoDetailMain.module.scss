@@ -4,11 +4,11 @@
 
 .wrapper details {
   transition: 0.5s;
-  background-color: cadetblue;
+  //   background-color: cadetblue;
 }
 
 .wrapper details[open] {
-  background-color: cadetblue;
+  //   background-color: cadetblue;
 }
 
 .wrapper summary::-webkit-details-marker {
@@ -17,7 +17,7 @@
 }
 
 .wrapper summary:active {
-  background-color: cadetblue;
+  //   background-color: cadetblue;
 }
 
 .wrapper summary:hover {
