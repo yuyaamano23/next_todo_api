@@ -31,13 +31,19 @@ const TodoDetailMain: React.FC<TodoItemProps> = ({ todo }) => {
           <EditIcon
             fontSize="large"
             className={styles.editIcon}
-            onClick={() => setIsTodoEditOpen(!isTodoEditOpen)}
+            onClick={() => {
+              setIsTodoEditOpen(!isTodoEditOpen)
+              setIsCommentPostOpen(true)
+            }}
           />
 
           <InsertCommentIcon
             fontSize="large"
             className={styles.commentIcon}
-            onClick={() => setIsCommentPostOpen(!isCommentPostOpen)}
+            onClick={() => {
+              setIsCommentPostOpen(!isCommentPostOpen)
+              setIsTodoEditOpen(true)
+            }}
           />
 
           <div className={isTodoEditOpen ? styles.formVisible : ''}>
