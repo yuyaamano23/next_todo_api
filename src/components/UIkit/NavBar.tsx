@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
+      textAlign: 'center',
     },
     drawer: {
       [theme.breakpoints.up('sm')]: {
@@ -39,7 +40,7 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     menuButton: {
-      marginRight: theme.spacing(2),
+      // marginRight: theme.spacing(2),
       [theme.breakpoints.up('sm')]: {
         display: 'none',
       },
@@ -142,7 +143,13 @@ const NavBar: React.FC<Props> = (props) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography
+            variant="h6"
+            style={{
+              margin: '0 auto',
+              paddingRight: '15px',
+            }}
+          >
             Hello, ToDoList👋
           </Typography>
           {MENU_LIST.map(({ title, href }) => {

@@ -1,17 +1,17 @@
-.todoItemWrapper {
+.commentItemWrapper {
   transition: all 0.2s ease-in-out;
-  width: 85%;
+  width: 75%;
   margin: 0 auto;
   margin-top: 10px;
 }
 
-.todoItemWrapper:hover {
+.commentItemWrapper:hover {
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.65);
 }
 
 .content {
   display: flex;
-  width: 250px;
+  width: 200px;
   align-items: center;
 }
 
@@ -20,11 +20,6 @@
   margin: 0px;
 }
 
-// 2番目の要素
-.content p:nth-child(2) {
-  margin-left: 10px;
-}
-
-.todoItemDeleteButton {
+.commentItemDeleteButton {
   margin-left: auto;
 }

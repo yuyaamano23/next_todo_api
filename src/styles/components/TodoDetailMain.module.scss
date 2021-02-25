@@ -1,0 +1,41 @@
+.wrapper {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.content {
+  background-color: #ecfbec;
+  color: rgb(75, 78, 78);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.65);
+  border-radius: 5px;
+  width: 85%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.contentText {
+  width: 85%;
+  margin: 0 auto;
+  line-height: normal;
+}
+
+.contentText h4 {
+  font-size: 15px;
+}
+
+.editIcon {
+  margin-left: 35px;
+  margin-right: 35px;
+}
+
+.editIcon:hover {
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.65);
+}
+
+.commentIcon:hover {
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.65);
+}
+
+.formVisible {
+  display: none;
+}

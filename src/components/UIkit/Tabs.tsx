@@ -6,46 +6,8 @@ import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted'
 import SearchIcon from '@material-ui/icons/Search'
-import Typography from '@material-ui/core/Typography'
-import Box from '@material-ui/core/Box'
-
-import TodoSearch from 'components/TodoSearch'
-import { Todo } from 'components/Types'
-import TodoList from 'components/TodoList'
-import TodoInput from 'components/TodoInput'
 
 import styles from 'styles/components/UIkit/Tabs.module.scss'
-
-type TodoListProps = {
-  todos: Todo[]
-}
-
-interface TabPanelProps {
-  children?: React.ReactNode
-  index: any
-  value: any
-}
-
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props
-
-  return (
-    <div
-      className={styles.TodosBodyWrapper}
-      role="tabpanel"
-      hidden={value !== index}
-      id={`scrollable-force-tabpanel-${index}`}
-      aria-labelledby={`scrollable-force-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  )
-}
 
 function a11yProps(index: any) {
   return {
@@ -62,7 +24,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-const ScrollableTabsButtonForce: React.FC<TodoListProps> = ({ todos }) => {
+const ScrollableTabsButtonForce: React.FC<{
+  updateTabsStateToTodos: () => void
+  updateTabsStateToSearch: () => void
+}> = ({ updateTabsStateToTodos, updateTabsStateToSearch }) => {
   const classes = useStyles()
   const [value, setValue] = React.useState(0)
 
@@ -71,7 +36,7 @@ const ScrollableTabsButtonForce: React.FC<TodoListProps> = ({ todos }) => {
   }
 
   return (
-    <div className={classes.root}>
+    <div className={(classes.root, styles.tabsWrapper)}>
       <AppBar position="static" color="default">
         <Tabs
           value={value}
@@ -86,19 +51,16 @@ const ScrollableTabsButtonForce: React.FC<TodoListProps> = ({ todos }) => {
             label="Todos"
             icon={<FormatListBulletedIcon />}
             {...a11yProps(0)}
+            onClick={() => updateTabsStateToTodos()}
           />
-          <Tab label="Search" icon={<SearchIcon />} {...a11yProps(1)} />
+          <Tab
+            label="Search"
+            icon={<SearchIcon />}
+            {...a11yProps(1)}
+            onClick={() => updateTabsStateToSearch()}
+          />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
-        <div>
-          <TodoInput />
-          <TodoList todos={todos} />
-        </div>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <TodoSearch />
-      </TabPanel>
     </div>
   )
 }

@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Tabs from 'components/UIkit/Tabs'
 import { GetStaticProps } from 'next'
 import { Todo } from 'components/Types'
+import TodoSearch from 'components/TodoSearch'
+import TodoList from 'components/TodoList'
+import TodoPostForm from 'components/TodoPostForm'
 
 type TodosServerSideIndexProps = {
   todos: Todo[]
@@ -10,9 +13,23 @@ type TodosServerSideIndexProps = {
 const Index: React.FC<TodosServerSideIndexProps> = ({
   todos,
 }: TodosServerSideIndexProps) => {
+  const [TabState, setTabState] = useState<number>(0)
+  const updateTabsStateToTodos = (): void => setTabState(0)
+  const updateTabsStateToSearch = (): void => setTabState(1)
   return (
     <>
-      <Tabs todos={todos} />
+      <Tabs
+        updateTabsStateToTodos={updateTabsStateToTodos}
+        updateTabsStateToSearch={updateTabsStateToSearch}
+      />
+      {TabState == 0 ? (
+        <div>
+          <TodoPostForm />
+          <TodoList todos={todos} />
+        </div>
+      ) : (
+        <TodoSearch />
+      )}
     </>
   )
 }

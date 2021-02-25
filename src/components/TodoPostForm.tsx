@@ -1,16 +1,26 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import Router from 'next/router'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import { createStyles, makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
-const useStyles = makeStyles((theme: Theme) =>
+import styles from 'styles/components/TodoInput.module.scss'
+
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       '& > *': {
-        margin: theme.spacing(1),
-        width: '25ch',
+        marginTop: '25px',
+        width: '85%',
       },
+    },
+    input: {
+      backgroundColor: 'white',
+    },
+    button: {
+      marginTop: '15px',
+      marginBottom: '15px',
     },
   })
 )
@@ -20,7 +30,7 @@ type InputData = {
   content: string
 }
 
-const TodoInput: React.FC = () => {
+const TodoPostForm: React.FC = () => {
   const classes = useStyles()
 
   const [title, setTitle] = useState('')
@@ -64,43 +74,57 @@ const TodoInput: React.FC = () => {
         console.log(err)
       })
   }
+  // Enter（リターン）キーの発火イベント動作
+  const enterEvent = (e) => {
+    console.log('enter event')
+    handleSubmit(e)
+    return false
+  }
+
   return (
-    <div>
+    <div className={styles.todoInputWrapper}>
       {isInputted ? '' : <p style={{ color: 'red' }}>値を入力してください</p>}
-      {/* <h3>title</h3> */}
-      <form className={classes.root} noValidate autoComplete="off">
+      <form
+        className={classes.root}
+        noValidate
+        autoComplete="off"
+        onSubmit={enterEvent}
+      >
         <TextField
           id="outlined-basic"
           label="title"
           variant="outlined"
           type="text"
-          // value={title}
+          value={title}
           onChange={(e) => setTitle(e.target.value)}
+          className={classes.input}
         />
+      </form>
+      <form
+        className={classes.root}
+        noValidate
+        autoComplete="off"
+        onSubmit={enterEvent}
+      >
         <TextField
           id="outlined-basic"
           label="content"
           variant="outlined"
           type="text"
-          // value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
-      </form>
-      {/* <input
-          type="text"
-          placeholder="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <h3>content</h3>
-        <input
-          type="text"
-          placeholder="content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
-        /> */}
-      <button onClick={handleSubmit}>追加</button>
+          className={classes.input}
+        />
+        <Button
+          variant="outlined"
+          color="primary"
+          className={classes.button}
+          onClick={handleSubmit}
+        >
+          追加
+        </Button>
+      </form>
     </div>
   )
 }
-export default TodoInput
+export default TodoPostForm
