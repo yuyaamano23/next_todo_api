@@ -70,8 +70,8 @@ const CommentPostForm: React.FC<TodoItemProps> = ({ todo }) => {
         console.log('TodoInput Post success')
         //  検索欄をクリア
         setCommentBody('')
-        // ページ更新させる
-        Router.push(`/todos/${todo.id}`)
+        // 現在表示されているページをリロードする(route.pushだと削除コメントがまだ残るから。。。おそらくSPA遷移のためリクエストが起きていないのが原因)
+        location.reload()
       })
       .catch((err) => {
         console.log(err)
@@ -98,7 +98,7 @@ const CommentPostForm: React.FC<TodoItemProps> = ({ todo }) => {
           label="content"
           variant="outlined"
           type="text"
-          //   value={content}
+          value={commentBody}
           onChange={(e) => setCommentBody(e.target.value)}
           className={classes.input}
         />

@@ -22,8 +22,6 @@ const CommentDeleteButton: React.FC<CommentItemProps> = ({ comment }) => {
     })
       .then(() => {
         console.log('comment delete success')
-        // ページ更新させる
-        // Router.push(`/todos/${comment.todo_id}`)
         // 現在表示されているページをリロードする(route.pushだと削除コメントがまだ残るから。。。おそらくSPA遷移のためリクエストが起きていないのが原因)
         location.reload()
       })
