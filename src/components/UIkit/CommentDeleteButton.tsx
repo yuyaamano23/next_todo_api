@@ -33,7 +33,7 @@ const CommentDeleteButton: React.FC<CommentItemProps> = ({ comment }) => {
   }
   return (
     <DeleteIcon
-      fontSize="large"
+      fontSize="default"
       className={styles.deleteIcon}
       onClick={handleDelete}
     >

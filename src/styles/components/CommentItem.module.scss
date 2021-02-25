@@ -1,6 +1,6 @@
 .commentItemWrapper {
   transition: all 0.2s ease-in-out;
-  width: 85%;
+  width: 75%;
   margin: 0 auto;
   margin-top: 10px;
 }
@@ -11,7 +11,7 @@
 
 .content {
   display: flex;
-  width: 250px;
+  width: 200px;
   align-items: center;
 }
 
@@ -20,11 +20,6 @@
   margin: 0px;
 }
 
-// 2番目の要素
-.content p:nth-child(2) {
-  margin-left: 10px;
-}
-
-.commentDeleteButton {
+.commentItemDeleteButton {
   margin-left: auto;
 }
