@@ -38,7 +38,7 @@ const TodoEdit: React.FC<TodoItemProps> = ({ todo }) => {
         setTitle('')
         setContent('')
         // ページ更新させる
-        Router.push('/todos')
+        Router.push(`/todos/${todo.id}`)
       })
       .catch((err) => {
         console.log(err)

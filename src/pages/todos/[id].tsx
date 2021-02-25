@@ -2,26 +2,17 @@ import React from 'react'
 import { Todo } from 'components/Types'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Link from 'next/link'
-// import TodoEdit from 'components/TodoEdit'
 import CommentList from 'components/CommentList'
-import TodoDeleteButton from 'components/UIkit/TodoDeleteButton'
+import TodoDetailMain from 'components/TodoDetailMain'
 
 type TodoItemProps = {
   todo: Todo
 }
 
-const TodoItemDetail: React.FC<TodoItemProps> = ({ todo }) => {
+const TodoDetail: React.FC<TodoItemProps> = ({ todo }) => {
   return (
     <>
-      <div style={{ display: 'flex' }}>
-        <div>
-          <h1>ID: {todo.id}</h1>
-          <h1>TITLE: {todo.title}</h1>
-          <h1>内容: {todo.content}</h1>
-          <TodoDeleteButton size="large" todo={todo} />
-        </div>
-        {/* <TodoEdit todo={todo} /> */}
-      </div>
+      <TodoDetailMain todo={todo} />
       <CommentList todo={todo} />
       <Link href="/todos">
         <button>topに戻る</button>
@@ -30,7 +21,7 @@ const TodoItemDetail: React.FC<TodoItemProps> = ({ todo }) => {
   )
 }
 
-export default TodoItemDetail
+export default TodoDetail
 
 export const getStaticPaths: GetStaticPaths = async () => {
   // 外部APIエンドポイントを呼び出しデータ取得
