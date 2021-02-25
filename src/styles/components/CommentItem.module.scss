@@ -1,0 +1,30 @@
+.commentItemWrapper {
+  transition: all 0.2s ease-in-out;
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.commentItemWrapper:hover {
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.65);
+}
+
+.content {
+  display: flex;
+  width: 250px;
+  align-items: center;
+}
+
+.content p {
+  padding: 0px;
+  margin: 0px;
+}
+
+// 2番目の要素
+.content p:nth-child(2) {
+  margin-left: 10px;
+}
+
+.commentDeleteButton {
+  margin-left: auto;
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Comment } from 'components/Types'
+import DeleteIcon from '@material-ui/icons/Delete'
 import styles from 'styles/components/UIkit/CommentDeleteButton.module.scss'
 
 type CommentItemProps = {
@@ -31,9 +32,13 @@ const CommentDeleteButton: React.FC<CommentItemProps> = ({ comment }) => {
       })
   }
   return (
-    <button className={styles.testClass} onClick={handleDelete}>
+    <DeleteIcon
+      fontSize="large"
+      className={styles.deleteIcon}
+      onClick={handleDelete}
+    >
       コメントを削除
-    </button>
+    </DeleteIcon>
   )
 }
 export default CommentDeleteButton
