@@ -3,14 +3,16 @@
 - ~~記事編集機能~~
 - ~~検索機能~~
 - ~~style の適応~~
+- todo ソート機能
 - Redux(hooks 利用)
-- ユーザ認証
+- ユーザ認証(パスワード一致確認)
 - いいね機能
 - ~~コメント機能~~
 - 画像投稿機能(プロフ画像とか)
 - テストちゃんと書く
 - Vercel デプロイ
 - useMemo によるチューニング
+  [React.memo を使ったレンダリング最適化入門](https://zenn.dev/nus3/articles/1978a344cfaa4d3359c1)<br>
 - firebase 認証
 
 ## 環境構築
@@ -168,6 +170,37 @@ Zennの場合にはcomponentsディレクトリのファイル数がけっこう
 
 </details>
 
+## 認証について
+
+[React(SPA)での認証についてまとめ](https://coders-shelf.com/react-auth-problem/)<br>
+[ログイン情報保持について学ぼう](https://diveintocode.jp/blogs/Technology/SessionManagement)<br>
+
+## Redux について
+
+- toolkit を採用
+
+#### 手順
+
+1 パッケージをインストールする
+
+```zsh
+$ yarn add -D @reduxjs/toolkit  @types/react-redux react-redux
+```
+
+2 slice を作る
+
+`createSlice`という関数を使います。<br>
+これを使うと Redux の reducer と action を同時に定義出来て、さらに TypeScript の恩恵も受けられます<br>
+
+3 store を作る<br>
+4 selectors を作る<br>
+5 \_app.tsx に登録<br>
+
+[Next.js に Redux を実装してみて](https://zenn.dev/nus3/articles/c2d86097029c12285680)<br>
+[Hook と Redux Toolkit で React Redux に入門する](https://www.hypertextcandy.com/learn-react-redux-with-hooks-and-redux-starter-kit)<br>
+[Next.js + TypeScript のプロジェクトに Redux を導入する](https://qiita.com/keitakn/items/7433c89ce52073e861a1)<br>
+[Redux 開発時のディレクトリ構成のパターン](https://qiita.com/10mi8o/items/4fdb595f68606bceccfd#operations)<br>
+
 ## テストについて
 
 [React テスト応用、テストに悩む人へ](https://zenn.dev/tkdn/books/react-testing-patterns)<br>
@@ -177,3 +210,11 @@ Zennの場合にはcomponentsディレクトリのファイル数がけっこう
 - Todo HighLight
   デフォルトだと`TODO:`,`FIXME:`をハイライト表示する。
   `command`+`shift`+`P`からの`>list`を選択すればコンソールにリストアップしてくれる。
+
+TODO:
+
+- isLoggedIn の Boolean 型を redux で管理
+  - re-dux
+- 共通の処理を実装
+  - 新規登録、ログイン時にとーくんを loccalstorage に保存する
+  - ログイン処理中はローディングエフェクト追加したい
