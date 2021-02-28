@@ -3,6 +3,6 @@
 */
 module.exports = {
   env: {
-    endPoint: 'http://localhost:8000/',
+    endPoint: 'http://localhost:8000',
   },
 }

@@ -17,7 +17,7 @@ const TodoDeleteButton: React.FC<TodoDeleteProps> = ({ todo, size }) => {
 
     axios({
       method: 'delete',
-      url: `http://localhost:8000/api/todos/${todo.id}`,
+      url: `${process.env.endPoint}/api/todos/${todo.id}`,
       headers: {
         'Content-Type': 'application/json',
       },
