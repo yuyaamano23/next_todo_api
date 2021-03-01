@@ -45,6 +45,7 @@ const signUp: React.FC = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [isConfirm, setIsConfirm] = useState(true)
   const [isInputted, setIsInputted] = useState(true)
 
   const handleSubmit = (e) => {
@@ -55,6 +56,17 @@ const signUp: React.FC = () => {
       setIsInputted(false)
       return
     }
+
+    // 空欄でない場合に押したら警告消す
+    setIsInputted(true)
+
+    if (!(password == confirmPassword)) {
+      setIsConfirm(false)
+      return
+    }
+
+    // パス一致している場合に押したら警告消す
+    setIsConfirm(true)
   }
   // Enter（リターン）キーの発火イベント動作
   const enterEvent = (e) => {
@@ -172,7 +184,7 @@ const signUp: React.FC = () => {
                   fullWidth
                   name="confirm-password"
                   label="Confirm Password"
-                  type="confirm password"
+                  type="password"
                   id="confirm password"
                   autoComplete="current-password"
                   value={confirmPassword}
@@ -185,6 +197,11 @@ const signUp: React.FC = () => {
             ''
           ) : (
             <p style={{ color: 'red' }}>値を入力してください</p>
+          )}
+          {isConfirm ? (
+            ''
+          ) : (
+            <p style={{ color: 'red' }}>パスワードが一致しません</p>
           )}
           <Button
             //   type="submit"
