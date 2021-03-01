@@ -2,6 +2,10 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
+import { useDispatch } from 'react-redux'
+import authSlice from 'ducks/auth/slice'
+import { useAuthState } from 'ducks/auth/selectors'
+
 import AppBar from '@material-ui/core/AppBar'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Divider from '@material-ui/core/Divider'
@@ -24,6 +28,7 @@ import {
   Theme,
   createStyles,
 } from '@material-ui/core/styles'
+import { stat } from 'fs'
 
 const drawerWidth = 240
 
@@ -75,25 +80,34 @@ interface Props {
   window?: () => Window
 }
 
-const MENU_LIST = [
-  {
-    title: 'TODOS',
-    icon: <FormatListBulletedIcon />,
-    href: '/todos',
-  },
-  {
-    title: 'MYPAGE',
-    icon: <PersonIcon />,
-    href: '/mypage',
-  },
-  {
-    title: 'LOGOUT',
-    icon: <ExitToAppIcon />,
-    href: '/csr',
-  },
-]
-
 const NavBar: React.FC<Props> = (props) => {
+  const dispatch = useDispatch()
+  const state = useAuthState().auth
+
+  const MENU_LIST = [
+    {
+      title: 'TODOS',
+      icon: <FormatListBulletedIcon />,
+      href: '/todos',
+    },
+    {
+      title: 'MYPAGE',
+      icon: <PersonIcon />,
+      href: '/user/mypage',
+    },
+    state.isLoggedIn
+      ? {
+          title: 'LOGOUT',
+          icon: <ExitToAppIcon />,
+          href: '/todos',
+        }
+      : {
+          title: 'LOGIN',
+          icon: <ExitToAppIcon />,
+          href: '/user/signIn',
+        },
+  ]
+
   const { window } = props
   const classes = useStyles()
   const theme = useTheme()
