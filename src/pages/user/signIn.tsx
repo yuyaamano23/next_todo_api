@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import authSlice from 'ducks/auth/slice'
 import { saveAuthToken } from 'utils/tokenStorage'
+import Router from 'next/router'
 import axios from 'axios'
 
 type InputLoggedIndata = {
@@ -15,8 +16,6 @@ const signIn: React.FC = () => {
   const dispatch = useDispatch()
 
   const onClickLoggedIn = () => {
-    dispatch(authSlice.actions.loggedIn())
-
     const data: InputLoggedIndata = {
       email: 'naze@gmail.com',
       password: 'naze',
@@ -34,6 +33,8 @@ const signIn: React.FC = () => {
         console.log(res.status)
         console.log(res.data)
         saveAuthToken(data.email, res.data)
+        dispatch(authSlice.actions.loggedIn())
+        Router.push('/todos')
       })
       .catch(() => {
         console.log('メールアドレスとパスワードが一致しません')
