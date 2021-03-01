@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useDispatch } from 'react-redux'
 import authSlice from 'ducks/auth/slice'
 import { useAuthState } from 'ducks/auth/selectors'
-import { removeAuthToken } from 'utils/tokenStorage'
+import { removeAuthToken, getUserName } from 'utils/tokenStorage'
 
 import AppBar from '@material-ui/core/AppBar'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -63,6 +63,14 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     // necessary for content to be below app bar
     toolbar: theme.mixins.toolbar,
+    userProfile: {
+      textAlign: 'center',
+      paddingTop: '17px',
+      fontSize: '20px',
+    },
+    san: {
+      fontSize: '10px',
+    },
     drawerPaper: {
       width: drawerWidth,
     },
@@ -81,6 +89,12 @@ interface Props {
 }
 
 const NavBar: React.FC<Props> = (props) => {
+  const [userName, setUserName] = React.useState('ゲストユーザ')
+
+  React.useEffect(() => {
+    const name = getUserName()
+    setUserName(name)
+  }, [])
   const dispatch = useDispatch()
   const state = useAuthState().auth
 
@@ -88,6 +102,7 @@ const NavBar: React.FC<Props> = (props) => {
   const classes = useStyles()
   const theme = useTheme()
   const [mobileOpen, setMobileOpen] = React.useState(false)
+
   const router = useRouter()
 
   const handleDrawerToggle = () => {
@@ -125,7 +140,12 @@ const NavBar: React.FC<Props> = (props) => {
 
   const drawer = (
     <div>
-      <div className={classes.toolbar} />
+      <div className={classes.toolbar}>
+        <div className={classes.userProfile}>
+          {userName}
+          <span className={classes.san}>さん</span>
+        </div>
+      </div>
       <Divider />
       <List>
         {MENU_LIST.map(({ title, icon, href }) => (
