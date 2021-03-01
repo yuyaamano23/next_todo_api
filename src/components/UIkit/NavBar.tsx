@@ -136,6 +136,17 @@ const NavBar: React.FC<Props> = (props) => {
           icon: <ExitToAppIcon />,
           href: '/user/signIn',
         },
+    state.isLoggedIn
+      ? {
+          title: '',
+          icon: null,
+          href: '',
+        }
+      : {
+          title: 'SIGNUP',
+          icon: <ExitToAppIcon />,
+          href: '/user/signUp',
+        },
   ]
 
   const drawer = (
