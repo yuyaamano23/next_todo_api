@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useDispatch } from 'react-redux'
 import authSlice from 'ducks/auth/slice'
 import { useAuthState } from 'ducks/auth/selectors'
+import { removeAuthToken } from 'utils/tokenStorage'
 
 import AppBar from '@material-ui/core/AppBar'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -28,7 +29,6 @@ import {
   Theme,
   createStyles,
 } from '@material-ui/core/styles'
-import { stat } from 'fs'
 
 const drawerWidth = 240
 
@@ -84,6 +84,21 @@ const NavBar: React.FC<Props> = (props) => {
   const dispatch = useDispatch()
   const state = useAuthState().auth
 
+  const { window } = props
+  const classes = useStyles()
+  const theme = useTheme()
+  const [mobileOpen, setMobileOpen] = React.useState(false)
+  const router = useRouter()
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen)
+  }
+
+  const onClickLoggedOut = () => {
+    removeAuthToken()
+    dispatch(authSlice.actions.loggedOut())
+  }
+
   const MENU_LIST = [
     {
       title: 'TODOS',
@@ -108,16 +123,6 @@ const NavBar: React.FC<Props> = (props) => {
         },
   ]
 
-  const { window } = props
-  const classes = useStyles()
-  const theme = useTheme()
-  const [mobileOpen, setMobileOpen] = React.useState(false)
-  const router = useRouter()
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen)
-  }
-
   const drawer = (
     <div>
       <div className={classes.toolbar} />
@@ -130,6 +135,9 @@ const NavBar: React.FC<Props> = (props) => {
             onClick={() => {
               setMobileOpen(false)
               router.push(href)
+              if (title == 'LOGOUT') {
+                onClickLoggedOut()
+              }
             }}
           >
             <ListItemIcon>{icon}</ListItemIcon>
