@@ -27,6 +27,10 @@ export const removeAuthToken: any = () => {
   removeItem('email')
 }
 
-export const getUserId: any = () => {
+export const getUserEmail: any = () => {
   return getItem('email')
+}
+
+export const getUserToken: any = () => {
+  return getItem('token')
 }
