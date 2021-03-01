@@ -2,9 +2,10 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import authSlice from 'ducks/auth/slice'
 import { useAuthState } from 'ducks/auth/selectors'
+import { saveAuthToken } from 'utils/tokenStorage'
 import axios from 'axios'
 
-const Index: React.FC = () => {
+const mypage: React.FC = () => {
   const dispatch = useDispatch()
   const state = useAuthState().auth
 
@@ -34,6 +35,7 @@ const Index: React.FC = () => {
       .then((res) => {
         if (res.data.id && res.data.name && res.data.email) {
           console.log('token valid')
+          saveAuthToken()
         } else {
           console.log('token invalid')
         }
@@ -59,4 +61,4 @@ const Index: React.FC = () => {
     </>
   )
 }
-export default Index
+export default mypage
