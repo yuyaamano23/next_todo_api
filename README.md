@@ -9,6 +9,8 @@
 - いいね機能
 - ~~コメント機能~~
 - 画像投稿機能(プロフ画像とか)
+- 投稿、削除、ログイアウト時などにアラート出したい
+- 名前ナビばーにだす
 - テストちゃんと書く
 - Vercel デプロイ
 - useMemo によるチューニング
@@ -175,9 +177,19 @@ Zennの場合にはcomponentsディレクトリのファイル数がけっこう
 [React(SPA)での認証についてまとめ](https://coders-shelf.com/react-auth-problem/)<br>
 [ログイン情報保持について学ぼう](https://diveintocode.jp/blogs/Technology/SessionManagement)<br>
 
+_認証アルゴリズム_
+
+1 新規登録時、ログイン時にサーバーからトークンを受け取り(ログイン時にトークンはリフレッシュされる)メールアドレスと一緒にlocalstorageに保存
+2 (マウント時に1度だけ全ページ共通処理)現在localstorageに保存されているトークンが有効かどうかを確認し、reduxで管理しているisLoggedInのboolenを判定
+  - _app.tsxではprivederでラップしたコンポーネントしかstoreに接続できないので、AppInit関数を作ることで解決した<br>
+  [Next.jsでページ共通の処理をする（useEffectを使う例）](https://zenn.dev/catnose99/articles/2169dae14b58b6#2.-%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E6%83%85%E5%A0%B1%E3%81%AB%E3%81%A9%E3%81%93%E3%81%8B%E3%82%89%E3%81%A7%E3%82%82%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%83%95%E3%83%83%E3%82%AF%E3%82%92%E4%BD%9C%E3%82%8B)<br>
+
+3 ログアウト状態では閲覧のみしかできない
+
 ## Redux について
 
 - toolkit を採用
+- フォルダ構成は Re-dux を採用
 
 #### 手順
 
@@ -204,6 +216,11 @@ $ yarn add -D @reduxjs/toolkit  @types/react-redux react-redux
 ## テストについて
 
 [React テスト応用、テストに悩む人へ](https://zenn.dev/tkdn/books/react-testing-patterns)<br>
+
+
+## 環境変数
+[Next.jsでNODE_ENVによってAPIリクエスト先を変える](https://miyahara.hikaru.dev/posts/20200306/)<br>
+[nextjs with typescript:33 環境変数について](https://note.com/fz5050/n/n69c8a60ca27b)<br>
 
 ## VScode 拡張機能
 
