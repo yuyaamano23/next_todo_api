@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import authSlice from 'ducks/auth/slice'
 import axios from 'axios'
-import { getItem } from 'utils/tokenStorage'
+import { getItem, setItem } from 'utils/tokenStorage'
 import store from 'ducks/store'
 import Head from 'next/head'
 import { ThemeProvider } from '@material-ui/core/styles'
@@ -35,6 +35,7 @@ function AppInit() {
       .then((res) => {
         if (res.data.id && res.data.name && res.data.email) {
           console.log('token valid')
+          setItem('name', res.data.name)
           // storeのisLoggedInをtrueにする
           dispatch(authSlice.actions.loggedIn())
         } else {
