@@ -22,9 +22,9 @@ export const saveAuthToken: any = (token, email) => {
 /**
  * 保存されたトークン・emailを削除する
  */
-export const removeAuthTokens: any = () => {
+export const removeAuthToken: any = () => {
   removeItem('token')
-  removeItem('dmail')
+  removeItem('email')
 }
 
 export const getUserId: any = () => {
