@@ -32,7 +32,7 @@ const signIn: React.FC = () => {
       .then((res) => {
         console.log(res.status)
         console.log(res.data)
-        saveAuthToken(data.email, res.data)
+        saveAuthToken(res.data, data.email)
         dispatch(authSlice.actions.loggedIn())
         Router.push('/todos')
       })
