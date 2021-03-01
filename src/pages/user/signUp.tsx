@@ -29,7 +29,9 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
+  },
+  formFirst: {
+    paddingTop: '50px',
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -110,9 +112,13 @@ const signUp: React.FC = () => {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <form className={classes.form} noValidate onSubmit={enterEvent}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <form
+                className={(classes.form, classes.formFirst)}
+                noValidate
+                onSubmit={enterEvent}
+              >
                 <TextField
                   autoComplete="fname"
                   name="Name"
@@ -125,8 +131,10 @@ const signUp: React.FC = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
-              </Grid>
-              <Grid item xs={12}>
+              </form>
+            </Grid>
+            <Grid item xs={12}>
+              <form className={classes.form} noValidate onSubmit={enterEvent}>
                 <TextField
                   variant="outlined"
                   required
@@ -138,8 +146,10 @@ const signUp: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
-              </Grid>
-              <Grid item xs={12}>
+              </form>
+            </Grid>
+            <Grid item xs={12}>
+              <form className={classes.form} noValidate onSubmit={enterEvent}>
                 <TextField
                   variant="outlined"
                   required
@@ -152,8 +162,10 @@ const signUp: React.FC = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-              </Grid>
-              <Grid item xs={12}>
+              </form>
+            </Grid>
+            <Grid item xs={12}>
+              <form className={classes.form} noValidate onSubmit={enterEvent}>
                 <TextField
                   variant="outlined"
                   required
@@ -166,31 +178,32 @@ const signUp: React.FC = () => {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
-              </Grid>
+              </form>
             </Grid>
-            {isInputted ? (
-              ''
-            ) : (
-              <p style={{ color: 'red' }}>値を入力してください</p>
-            )}
-            <Button
-              //   type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={handleSubmit}
-            >
-              Sign Up
-            </Button>
-            <Grid container justify="flex-end">
-              <Grid item>
-                <Link href="/user/signIn" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
+          </Grid>
+          {isInputted ? (
+            ''
+          ) : (
+            <p style={{ color: 'red' }}>値を入力してください</p>
+          )}
+          <Button
+            //   type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={handleSubmit}
+          >
+            Sign Up
+          </Button>
+          <Grid container justify="flex-end">
+            <Grid item>
+              <Link href="/user/signIn" variant="body2">
+                Already have an account? Sign in
+              </Link>
             </Grid>
-          </form>
+          </Grid>
+          {/* </form> */}
         </div>
       </Container>
       {/* {state.isLoggedIn ? (
