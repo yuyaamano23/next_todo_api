@@ -65,8 +65,10 @@ const useStyles = makeStyles((theme: Theme) =>
     toolbar: theme.mixins.toolbar,
     userProfile: {
       textAlign: 'center',
-      paddingTop: '17px',
+    },
+    userName: {
       fontSize: '20px',
+      paddingTop: '5px',
     },
     san: {
       fontSize: '10px',
@@ -153,7 +155,11 @@ const NavBar: React.FC<Props> = (props) => {
     <div>
       <div className={classes.toolbar}>
         <div className={classes.userProfile}>
-          {userName}
+          {state.isLoggedIn ? (
+            <div className={classes.userName}>{userName}</div>
+          ) : (
+            <div className={classes.userName}>ゲストユーザー</div>
+          )}
           <span className={classes.san}>さん</span>
         </div>
       </div>
