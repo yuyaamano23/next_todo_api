@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import authSlice from 'ducks/auth/slice'
-import { useAuthState } from 'ducks/auth/selectors'
 import { saveAuthToken } from 'utils/tokenStorage'
 import axios from 'axios'
+import Router from 'next/router'
 
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 const signUp: React.FC = () => {
   const classes = useStyles()
+  const dispatch = useDispatch()
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -47,6 +48,12 @@ const signUp: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [isConfirm, setIsConfirm] = useState(true)
   const [isInputted, setIsInputted] = useState(true)
+
+  type InputData = {
+    name: string
+    email: string
+    password: string
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -67,6 +74,30 @@ const signUp: React.FC = () => {
 
     // パス一致している場合に押したら警告消す
     setIsConfirm(true)
+
+    const data: InputData = {
+      name: name,
+      email: email,
+      password: password,
+    }
+
+    axios({
+      method: 'post',
+      url: `${process.env.endPoint}/api/register`,
+      params: data,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => {
+        saveAuthToken(res.data.api_token, res.data.email, res.data.name)
+        dispatch(authSlice.actions.loggedIn())
+        // ページ更新させる
+        Router.push('/todos')
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
   // Enter（リターン）キーの発火イベント動作
   const enterEvent = (e) => {
