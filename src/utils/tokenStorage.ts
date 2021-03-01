@@ -13,24 +13,31 @@ const removeItem = (key) => {
  * トークン・email保存する
  *
  * @param {String} token - 認証トークン
- * @param {String} email - email
+ * @param {String} email - メアド
+ * @param {String} name - 名前
  */
-export const saveAuthToken: any = (token, email) => {
+export const saveAuthToken: any = (token, email, name) => {
   setItem('token', token)
   setItem('email', email)
+  setItem('name', name)
 }
 /**
- * 保存されたトークン・emailを削除する
+ * 保存されたトークン・email・nameを削除する
  */
 export const removeAuthToken: any = () => {
   removeItem('token')
   removeItem('email')
+  removeItem('name')
+}
+
+export const getUserToken: any = () => {
+  return getItem('token')
 }
 
 export const getUserEmail: any = () => {
   return getItem('email')
 }
 
-export const getUserToken: any = () => {
-  return getItem('token')
+export const getUserName: any = () => {
+  return getItem('name')
 }
