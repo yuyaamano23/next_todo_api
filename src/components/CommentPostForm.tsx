@@ -59,7 +59,7 @@ const CommentPostForm: React.FC<TodoItemProps> = ({ todo }) => {
 
     axios({
       method: 'post',
-      url: 'http://localhost:8000/api/comments',
+      url: `${process.env.endPoint}/api/comments`,
       params: data,
       headers: {
         'Content-Type': 'application/json',

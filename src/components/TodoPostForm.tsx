@@ -56,7 +56,7 @@ const TodoPostForm: React.FC = () => {
 
     axios({
       method: 'post',
-      url: 'http://localhost:8000/api/todos',
+      url: `${process.env.endPoint}/api/todos`,
       params: data,
       headers: {
         'Content-Type': 'application/json',

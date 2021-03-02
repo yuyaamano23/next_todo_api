@@ -25,7 +25,7 @@ export default TodoDetail
 
 export const getStaticPaths: GetStaticPaths = async () => {
   // 外部APIエンドポイントを呼び出しデータ取得
-  const res = await fetch('http://localhost:8000/api/todos')
+  const res = await fetch(`${process.env.endPoint}/api/todos`)
   const todos = await res.json()
 
   // 事前ビルドしたいパスを指定
@@ -44,7 +44,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 // todosには上記pathsで指定した値が入る（1postずつ）
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   // 外部APIエンドポイントを呼び出しデータ取得
-  const res = await fetch(`http://localhost:8000/api/todos/${params.id}`)
+  const res = await fetch(`${process.env.endPoint}/api/todos/${params.id}`)
   const todo = await res.json()
 
   // ページコンポーネントにpropsとしてに渡す

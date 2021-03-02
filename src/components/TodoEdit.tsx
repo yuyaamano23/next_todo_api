@@ -61,7 +61,7 @@ const TodoEdit: React.FC<TodoItemProps> = ({ todo }) => {
 
     axios({
       method: 'put',
-      url: `http://localhost:8000/api/todos/${todo.id}`,
+      url: `${process.env.endPoint}/api/todos/${todo.id}`,
       data: data,
       headers: {
         'Content-Type': 'application/json',

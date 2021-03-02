@@ -37,7 +37,7 @@ const TodoSearch: React.FC = () => {
 
     axios({
       method: 'get',
-      url: 'http://localhost:8000/api/todo/search',
+      url: `${process.env.endPoint}/api/todo/search`,
       params: { keyword: keyword },
       headers: {
         'Content-Type': 'application/json',

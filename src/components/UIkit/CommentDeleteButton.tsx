@@ -15,7 +15,7 @@ const CommentDeleteButton: React.FC<CommentItemProps> = ({ comment }) => {
 
     axios({
       method: 'delete',
-      url: `http://localhost:8000/api/comments/${comment.id}`,
+      url: `${process.env.endPoint}/api/comments/${comment.id}`,
       headers: {
         'Content-Type': 'application/json',
       },

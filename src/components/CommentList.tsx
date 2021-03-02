@@ -17,7 +17,7 @@ const CommentList: React.FC<TodoItemProps> = ({ todo }) => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'http://localhost:8000/api/comments',
+      url: `${process.env.endPoint}/api/comments`,
       params: { todo_id: todo.id },
       headers: {
         'Content-Type': 'application/json',

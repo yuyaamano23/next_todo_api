@@ -2,6 +2,11 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
+import { useDispatch } from 'react-redux'
+import authSlice from 'ducks/auth/slice'
+import { useAuthState } from 'ducks/auth/selectors'
+import { removeAuthToken, getUserName } from 'utils/tokenStorage'
+
 import AppBar from '@material-ui/core/AppBar'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Divider from '@material-ui/core/Divider'
@@ -58,6 +63,16 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     // necessary for content to be below app bar
     toolbar: theme.mixins.toolbar,
+    userProfile: {
+      textAlign: 'center',
+    },
+    userName: {
+      fontSize: '20px',
+      paddingTop: '5px',
+    },
+    san: {
+      fontSize: '10px',
+    },
     drawerPaper: {
       width: drawerWidth,
     },
@@ -75,38 +90,80 @@ interface Props {
   window?: () => Window
 }
 
-const MENU_LIST = [
-  {
-    title: 'TODOS',
-    icon: <FormatListBulletedIcon />,
-    href: '/todos',
-  },
-  {
-    title: 'MYPAGE',
-    icon: <PersonIcon />,
-    href: '/mypage',
-  },
-  {
-    title: 'LOGOUT',
-    icon: <ExitToAppIcon />,
-    href: '/csr',
-  },
-]
-
 const NavBar: React.FC<Props> = (props) => {
+  const [userName, setUserName] = React.useState('ゲストユーザ')
+
+  React.useEffect(() => {
+    const name = getUserName()
+    setUserName(name)
+  }, [])
+  const dispatch = useDispatch()
+  const state = useAuthState().auth
+
   const { window } = props
   const classes = useStyles()
   const theme = useTheme()
   const [mobileOpen, setMobileOpen] = React.useState(false)
+
   const router = useRouter()
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
   }
 
+  const onClickLoggedOut = () => {
+    removeAuthToken()
+    dispatch(authSlice.actions.loggedOut())
+    location.reload()
+  }
+
+  const MENU_LIST = [
+    {
+      title: 'TODOS',
+      icon: <FormatListBulletedIcon />,
+      href: '/todos',
+    },
+    {
+      title: 'MYPAGE',
+      icon: <PersonIcon />,
+      href: '/user/mypage',
+    },
+    state.isLoggedIn
+      ? {
+          title: 'LOGOUT',
+          icon: <ExitToAppIcon />,
+          href: '/todos',
+        }
+      : {
+          title: 'LOGIN',
+          icon: <ExitToAppIcon />,
+          href: '/user/signIn',
+        },
+    state.isLoggedIn
+      ? {
+          title: '',
+          icon: null,
+          href: '',
+        }
+      : {
+          title: 'SIGNUP',
+          icon: <ExitToAppIcon />,
+          href: '/user/signUp',
+        },
+  ]
+
   const drawer = (
     <div>
-      <div className={classes.toolbar} />
+      <div className={classes.toolbar}>
+        <div className={classes.userProfile}>
+          {state.isLoggedIn ? (
+            <div className={classes.userName}>{userName}</div>
+          ) : (
+            <div className={classes.userName}>ゲストユーザー</div>
+          )}
+          <span className={classes.san}>さん</span>
+        </div>
+      </div>
       <Divider />
       <List>
         {MENU_LIST.map(({ title, icon, href }) => (
@@ -116,6 +173,9 @@ const NavBar: React.FC<Props> = (props) => {
             onClick={() => {
               setMobileOpen(false)
               router.push(href)
+              if (title == 'LOGOUT') {
+                onClickLoggedOut()
+              }
             }}
           >
             <ListItemIcon>{icon}</ListItemIcon>
