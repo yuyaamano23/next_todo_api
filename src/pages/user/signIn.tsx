@@ -79,7 +79,7 @@ const signUp: React.FC = () => {
       .then((res) => {
         saveAuthToken(res.data.api_token, res.data.email, res.data.name)
         dispatch(authSlice.actions.loggedIn())
-        // ページ更新させる
+        // ページ遷移させる
         Router.push('/todos')
       })
       .catch((err) => {
@@ -92,44 +92,6 @@ const signUp: React.FC = () => {
     handleSubmit(e)
     return false
   }
-  //   const dispatch = useDispatch()
-  //   const state = useAuthState().auth
-
-  //   const onClickLoggedIn = () => {
-  //     dispatch(authSlice.actions.loggedIn())
-  //     TokenCheck()
-  //   }
-
-  //   const onClickLoggedOut = () => {
-  //     dispatch(authSlice.actions.loggedOut())
-  //   }
-
-  //   const TokenCheck = () => {
-  //     // localStorageから取得する予定
-  //     const email = 'naze@gmail.com'
-  //     const token = 'Nxyi1D0sgbllT28S6wAXN1AGhi4xVFDdGWJVm8qlruHX3KM97g2yTo3OEcUD'
-
-  //     axios({
-  //       method: 'get',
-  //       url: `${process.env.endPoint}/api/me`,
-  //       params: { email: email },
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     })
-  //       .then((res) => {
-  //         if (res.data.id && res.data.name && res.data.email) {
-  //           console.log('token valid')
-  //           saveAuthToken()
-  //         } else {
-  //           console.log('token invalid')
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  //   }
 
   return (
     <>
@@ -201,20 +163,8 @@ const signUp: React.FC = () => {
               </Link>
             </Grid>
           </Grid>
-          {/* </form> */}
         </div>
       </Container>
-      {/* {state.isLoggedIn ? (
-        <>
-          <div>ログイン中です</div>
-          <button onClick={onClickLoggedOut}>ログアウトする</button>
-        </>
-      ) : (
-        <>
-          <div>ログアウト中です</div>
-          <button onClick={onClickLoggedIn}>ログインする</button>
-        </>
-      )} */}
     </>
   )
 }
