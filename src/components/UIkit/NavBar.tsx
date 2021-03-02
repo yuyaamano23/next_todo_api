@@ -114,6 +114,7 @@ const NavBar: React.FC<Props> = (props) => {
   const onClickLoggedOut = () => {
     removeAuthToken()
     dispatch(authSlice.actions.loggedOut())
+    location.reload()
   }
 
   const MENU_LIST = [
